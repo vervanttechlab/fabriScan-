@@ -67,12 +67,21 @@ Future<void> tapText(WidgetTester tester, String text) async {
   await tester.pumpAndSettle();
 }
 
+/// Unmounts the app at the end so drift's live queries close their timers.
+void appTest(String name, Future<void> Function(WidgetTester) body) {
+  testWidgets(name, (tester) async {
+    await body(tester);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(milliseconds: 10));
+  });
+}
+
 void main() {
   // The asset cache would hand later tests a Future owned by an earlier
   // test's fake clock, which never completes.
   setUp(rootBundle.clear);
 
-  testWidgets('first launch: onboarding → guest → home (US-01, US-02)', (
+  appTest('first launch: onboarding → guest → home (US-01, US-02)', (
     tester,
   ) async {
     final db = await pumpApp(tester);
@@ -94,7 +103,7 @@ void main() {
     expect(await db.readPref('onboarding_done'), 'true');
   });
 
-  testWidgets('browse → category → fabric → care guide (US-30, US-20)', (
+  appTest('browse → category → fabric → care guide (US-30, US-20)', (
     tester,
   ) async {
     final db = AppDatabase.memory();
@@ -148,7 +157,7 @@ void main() {
     expect(find.textContaining('white vinegar'), findsOneWidget);
   });
 
-  testWidgets('search finds Piña when typing "pina" (US-31)', (tester) async {
+  appTest('search finds Piña when typing "pina" (US-31)', (tester) async {
     final db = AppDatabase.memory();
     await db.writePref('onboarding_done', 'true');
     await pumpApp(tester, db: db);
@@ -160,7 +169,7 @@ void main() {
     expect(find.text('Piña-seda'), findsOneWidget);
   });
 
-  testWidgets('theme choice is saved', (tester) async {
+  appTest('theme choice is saved', (tester) async {
     final db = AppDatabase.memory();
     await db.writePref('onboarding_done', 'true');
     await pumpApp(tester, db: db);
@@ -170,9 +179,7 @@ void main() {
   });
 
   for (final route in ['home', 'care', 'about']) {
-    testWidgets('1.3× text at 360 dp does not overflow: $route', (
-      tester,
-    ) async {
+    appTest('1.3× text at 360 dp does not overflow: $route', (tester) async {
       final db = AppDatabase.memory();
       await db.writePref('onboarding_done', 'true');
       await pumpApp(tester, db: db, textScale: 1.3);

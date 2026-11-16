@@ -1,11 +1,11 @@
 {
   "@@locale": "en",
   "appTitle": "FabriSCAN+",
-  "@appTitle": {"description": "App name. Not translated."},
-
+  "@appTitle": {
+    "description": "App name. Not translated."
+  },
   "splashTagline": "Know your fabric. Care for it right.",
   "splashCredit": "A thesis project · DMMSU Mid-La Union Campus",
-
   "onbSkip": "Skip",
   "onbNext": "Next",
   "onbBack": "Back",
@@ -17,24 +17,28 @@
   "onb3Title": "Keep your history",
   "onb3Body": "Every scan is saved on your phone. No account needed. Sign up later if you want it on other phones too.",
   "onbStep": "Step {current} of {total}",
-  "@onbStep": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}}},
-
+  "@onbStep": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "welcomeTitle": "Start scanning",
   "welcomeBody": "No account needed. Your scans stay on this phone.",
   "welcomeGuest": "Continue as Guest",
   "welcomeLogin": "Log in",
   "welcomeSignup": "Create a free account",
   "welcomeNote": "An account only adds history on other phones. Everything else works without one.",
-
   "navHome": "Home",
   "navBrowse": "Browse",
   "navHistory": "History",
   "navProfile": "Profile",
   "navScan": "Scan fabric",
-
-  "comingScan": "Scanning comes in the next test build.",
   "comingAccounts": "Accounts come in a later test build. Everything works as a guest.",
-
   "greetMorning": "Good morning",
   "greetAfternoon": "Good afternoon",
   "greetEvening": "Good evening",
@@ -44,36 +48,80 @@
   "homeScanBody": "Point, snap, and get care steps",
   "homeUpload": "Upload a photo",
   "homeFabricCount": "{count, plural, =1{1 fabric} other{{count} fabrics}}",
-  "@homeFabricCount": {"placeholders": {"count": {"type": "int"}}},
+  "@homeFabricCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeRecent": "Recent scans",
   "homeRecentEmpty": "Your scans will show up here.",
   "homeTipLabel": "Care tip of the day",
   "homeTipSample": "Air your barong in the shade after wearing it. Sweat left in piña turns it yellow over time.",
-
   "sampleContent": "Sample content: to be written by researchers",
   "sampleTip": "Sample tip",
   "sampleDescription": "Sample description: researchers to confirm",
   "sampleCitations": "Sample citations: researchers to add APA 7 references",
-
   "browseTitle": "Browse fabrics",
   "browseSearchHint": "Search fabrics, e.g. piña",
   "browseCategoryLine": "{count} · {description}",
-  "@browseCategoryLine": {"placeholders": {"count": {"type": "String"}, "description": {"type": "String"}}},
+  "@browseCategoryLine": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "description": {
+        "type": "String"
+      }
+    }
+  },
   "browseOffline": "Works without internet · {count} fabrics in the catalog",
-  "@browseOffline": {"placeholders": {"count": {"type": "int"}}},
+  "@browseOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "categoryIntro": "{description} {count}.",
-  "@categoryIntro": {"placeholders": {"description": {"type": "String"}, "count": {"type": "String"}}},
+  "@categoryIntro": {
+    "placeholders": {
+      "description": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
   "alsoIn": "Also in {categories}",
-  "@alsoIn": {"placeholders": {"categories": {"type": "String"}}},
-
+  "@alsoIn": {
+    "placeholders": {
+      "categories": {
+        "type": "String"
+      }
+    }
+  },
   "searchHint": "Search fabrics",
   "searchTypeMore": "Type at least 2 letters, e.g. \"pi\" for Piña.",
   "searchNone": "No fabric matches \"{query}\".",
-  "@searchNone": {"placeholders": {"query": {"type": "String"}}},
+  "@searchNone": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
   "searchNoneHint": "Check the spelling, or browse by category.",
-
   "fabricAlsoCalled": "Also called {names}",
-  "@fabricAlsoCalled": {"placeholders": {"names": {"type": "String"}}},
+  "@fabricAlsoCalled": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
   "fabricMadeOf": "What it's made of",
   "fabricRecognize": "How to recognize it",
   "fabricCareGuide": "Care guide",
@@ -83,14 +131,28 @@
   "fiberBlend": "blend",
   "fiberHintTitle": "Check the garment label to confirm fiber.",
   "fiberHintBody": "{fabric} can be made of {fibers}. A photo can't always tell them apart.",
-  "@fiberHintBody": {"placeholders": {"fabric": {"type": "String"}, "fibers": {"type": "String"}}},
+  "@fiberHintBody": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      },
+      "fibers": {
+        "type": "String"
+      }
+    }
+  },
   "fiberOr": "or",
-
   "careTitle": "Care guide",
   "careEyebrow": "CARE GUIDE",
   "careDisclaimer": "This is general guidance. Always follow the garment's care label if it differs.",
   "careDelicateNote": "Steps below are safe for the most delicate version ({fiber}). Check the garment label to confirm fiber.",
-  "@careDelicateNote": {"placeholders": {"fiber": {"type": "String"}}},
+  "@careDelicateNote": {
+    "placeholders": {
+      "fiber": {
+        "type": "String"
+      }
+    }
+  },
   "careWashing": "Washing",
   "careDrying": "Drying",
   "careIroning": "Ironing",
@@ -98,28 +160,56 @@
   "careStainShort": "Stains",
   "careStorage": "Storage",
   "careSteps": "{count, plural, =1{1 step} other{{count} steps}}",
-  "@careSteps": {"placeholders": {"count": {"type": "int"}}},
+  "@careSteps": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "carePickStain": "Pick a stain type",
   "careStainGroup": "Stain type",
   "careTestFirst": "On delicate or heritage fabric, test first on a hidden seam. If unsure, take it to a trusted dry cleaner.",
   "careNoIron": "No iron",
   "careIronDots": "{count, plural, =1{1 dot} other{{count} dots}}",
-  "@careIronDots": {"placeholders": {"count": {"type": "int"}}},
+  "@careIronDots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "careIronLabel": "Iron setting: {setting}",
-  "@careIronLabel": {"placeholders": {"setting": {"type": "String"}}},
+  "@careIronLabel": {
+    "placeholders": {
+      "setting": {
+        "type": "String"
+      }
+    }
+  },
   "careSources": "Sources ({count})",
-  "@careSources": {"placeholders": {"count": {"type": "int"}}},
+  "@careSources": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "careAllSources": "All sources",
   "careSourcesFor": "Sources · {section}",
-  "@careSourcesFor": {"placeholders": {"section": {"type": "String"}}},
+  "@careSourcesFor": {
+    "placeholders": {
+      "section": {
+        "type": "String"
+      }
+    }
+  },
   "careEcoTitle": "Garment life extended",
   "careEcoBody": "Caring for clothes the right way keeps them wearable for longer and out of landfills. (SDG 12)",
   "careSectionsNav": "Care sections",
-
   "historyTitle": "History",
   "historyEmptyTitle": "No scans yet",
   "historyEmptyBody": "Scan a fabric and it will be saved here, so you can find its care guide again.",
-
   "profileTitle": "Profile",
   "profileGuest": "Guest",
   "profileGuestScans": "Scans are saved on this phone",
@@ -136,8 +226,13 @@
   "profileSurvey": "Take the survey",
   "profileSurveySub": "Help the researchers · opens in your browser",
   "profileFooter": "FabriSCAN+ {version} · Free, no ads, no in-app purchases",
-  "@profileFooter": {"placeholders": {"version": {"type": "String"}}},
-
+  "@profileFooter": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "helpTitle": "Help & photo tips",
   "helpGoodScan": "For a good scan",
   "tipLight": "Use good natural light",
@@ -161,10 +256,15 @@
   "helpHistory2": "Tap a scan to open its result and care guide again.",
   "helpHistory3": "Tap the bin icon to delete a scan.",
   "helpManual": "These steps match the FabriSCAN+ user's manual.",
-
   "aboutTitle": "About & privacy",
   "aboutVersion": "Version {version}",
-  "@aboutVersion": {"placeholders": {"version": {"type": "String"}}},
+  "@aboutVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "aboutStudy": "THE STUDY",
   "aboutStudyTitle": "FabriSCAN+: Development of Textile Care Through Smart Mobile Application for Fabric Identification and Garment Maintenance",
   "aboutUniversity": "BS Textile and Fashion Technology · College of Technology · Don Mariano Marcos Memorial State University, Mid-La Union Campus, San Fernando, La Union · 2026",
@@ -185,9 +285,181 @@
   "aboutScanner": "Fabric scanner",
   "aboutScannerNone": "Not installed yet",
   "aboutContent": "Fabric content",
-
   "close": "Close",
   "back": "Back",
   "errorLoading": "Couldn't load the fabric list. Please restart the app.",
-  "notFound": "This fabric isn't in the catalog."
+  "notFound": "This fabric isn't in the catalog.",
+  "permTitle": "Allow camera access",
+  "permBody": "FabriSCAN+ uses the camera only to take a photo of your fabric. The photo stays on your phone.",
+  "permAllow": "Allow camera",
+  "permUpload": "Upload a photo instead",
+  "permDeniedTitle": "Camera is turned off",
+  "permDeniedBody": "To scan with the camera, turn it on in your phone's Settings: Apps → FabriSCAN+ → Permissions → Camera.",
+  "permOpenSettings": "Open Settings",
+  "camClose": "Close camera",
+  "camShutter": "Take photo",
+  "camGallery": "Choose from gallery",
+  "camTips": "Photo tips",
+  "camTip1": "Fill the frame with fabric",
+  "camTip2": "Move closer · 10–15 cm",
+  "camTip3": "Avoid flash glare",
+  "camTip4": "Hold steady",
+  "camError": "The camera couldn't start. You can upload a photo instead.",
+  "reviewTitle": "Check your photo",
+  "reviewHint": "Is the fabric sharp and filling the frame?",
+  "reviewRetake": "Retake",
+  "reviewUse": "Use photo",
+  "photoUnreadable": "Couldn't open this photo. Try another.",
+  "analyzingTitle": "Looking at the weave…",
+  "analyzing1": "Checking texture and sheen",
+  "analyzing2": "Comparing with {count} fabrics",
+  "@analyzing2": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analyzing3": "Almost done",
+  "analyzingError": "Something went wrong while checking the photo.",
+  "tryAgain": "Try again",
+  "resultTitle": "Result",
+  "yourPhoto": "Your photo",
+  "scannedNow": "Scanned just now",
+  "confHigh": "High match",
+  "confPossible": "Possible match",
+  "confNotSure": "Not sure",
+  "checkOnGarment": "Check these on your garment",
+  "viewCareGuide": "View care guide",
+  "notRight": "Not right? See other possible matches",
+  "savedLikely": "Saved to History · This is a likely match, not a lab test.",
+  "otherMatchesTitle": "Other possible matches",
+  "otherMatchesBody": "If {fabric} doesn't look right, compare these. Tap one to see its care guide.",
+  "@otherMatchesBody": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      }
+    }
+  },
+  "savedAs": "Saved {fabric} to History",
+  "@savedAs": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      }
+    }
+  },
+  "couldBeTitle": "This could be…",
+  "couldBeBody": "These fabrics look alike. Compare the details with your garment and pick the one that matches.",
+  "couldBeTip": "Tip: hold the garment up to the light and compare how see-through and stiff it is.",
+  "optionN": "Option {n}",
+  "@optionN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "thisOne": "This one · View care guide",
+  "noneOfThese": "None of these?",
+  "browse": "Browse",
+  "pickedSaved": "The fabric you pick is saved to History.",
+  "cantTitle": "We couldn't identify this fabric",
+  "cantBody": "The photo may be blurry or too dark, or it may not be a fabric FabriSCAN+ knows yet.",
+  "cantTips": "Try again with these tips",
+  "retakePhoto": "Retake photo",
+  "browseFabrics": "Browse fabrics",
+  "scopeNote": "FabriSCAN+ covers modern dress fabrics in {categories}.",
+  "@scopeNote": {
+    "placeholders": {
+      "categories": {
+        "type": "String"
+      }
+    }
+  },
+  "nothingSaved": "Nothing was saved to History.",
+  "historyOnPhone": "On this phone",
+  "historyFooter": "Newest first · Tap a scan to see its care guide",
+  "historyDelete": "Delete {fabric} scan",
+  "@historyDelete": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteTitle": "Delete this scan?",
+  "deleteBody": "{fabric} from {when} will be removed from History. This can't be undone.",
+  "@deleteBody": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "deleted": "Scan deleted",
+  "savedScan": "Saved scan",
+  "sourceCamera": "Camera",
+  "sourceGallery": "Gallery",
+  "aboutFabric": "About {fabric}",
+  "@aboutFabric": {
+    "placeholders": {
+      "fabric": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Today, {time}",
+  "@today": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "yesterday": "Yesterday, {time}",
+  "@yesterday": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "todayShort": "Today",
+  "yesterdayShort": "Yesterday",
+  "seeAll": "See all",
+  "profileData": "DATA",
+  "clearAll": "Clear all history",
+  "clearAllTitle": "Clear all history?",
+  "clearAllBody": "All {count} saved scans and their photos will be removed from this phone. This can't be undone.",
+  "@clearAllBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearAllYes": "Clear all",
+  "cleared": "History cleared",
+  "profileScanCount": "{count, plural, =0{No scans saved yet} =1{1 scan saved on this phone} other{{count} scans saved on this phone}}",
+  "@profileScanCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "testScannerTitle": "TEST BUILD · SCANNER",
+  "testScannerBody": "There is no trained scanner yet. Choose which result the test scanner gives, to try every screen.",
+  "testCycle": "Cycle",
+  "testA": "A",
+  "testB": "B",
+  "testC": "C",
+  "testScannerBanner": "Test scanner: results are examples, not a real identification."
 }

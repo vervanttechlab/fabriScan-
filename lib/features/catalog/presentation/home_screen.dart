@@ -3,6 +3,8 @@ import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/fabric_swatch.dart';
 import 'package:fabriscan/features/catalog/domain/catalog.dart';
 import 'package:fabriscan/features/catalog/presentation/catalog_widgets.dart';
+import 'package:fabriscan/features/history/presentation/history_screens.dart';
+import 'package:fabriscan/features/scan/presentation/scan_session.dart' as scan;
 import 'package:fabriscan/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -63,26 +65,13 @@ class HomeScreen extends StatelessWidget {
                   leading: const Icon(Symbols.photo_library_rounded),
                   title: Text(l.homeUpload, style: t.textTheme.titleMedium),
                   trailing: const Icon(Symbols.chevron_right_rounded),
-                  onTap: () => AppShell.startScan(context),
+                  onTap: () => scan.startScan(context, upload: true),
                 ),
               ),
               const SizedBox(height: 10),
               _CategoryGrid(catalog: catalog),
               const SizedBox(height: 18),
-              Text(l.homeRecent, style: t.textTheme.titleMedium),
-              const SizedBox(height: 8),
-              Card.filled(
-                color: t.colorScheme.surfaceContainerLow,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    l.homeRecentEmpty,
-                    style: t.textTheme.bodyMedium?.copyWith(
-                      color: t.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-              ),
+              RecentScansStrip(catalog: catalog),
               const SizedBox(height: 14),
               InfoBanner(
                 kind: BannerKind.eco,

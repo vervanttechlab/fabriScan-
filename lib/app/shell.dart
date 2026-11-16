@@ -1,6 +1,6 @@
 import 'dart:ui' show ImageFilter;
 
-import 'package:fabriscan/core/widgets/banners.dart';
+import 'package:fabriscan/features/scan/presentation/scan_session.dart' as scan;
 import 'package:fabriscan/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -11,8 +11,8 @@ class AppShell extends StatelessWidget {
   const new({required this.shell, super.key});
   final StatefulNavigationShell shell;
 
-  static void startScan(BuildContext context) =>
-      showComingSoon(context, AppLocalizations.of(context).comingScan);
+  static Future<void> startScan(BuildContext context) =>
+      scan.startScan(context);
 
   @override
   Widget build(BuildContext context) {

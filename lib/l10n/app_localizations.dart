@@ -244,12 +244,6 @@ abstract class AppLocalizations {
   /// **'Scan fabric'**
   String get navScan;
 
-  /// No description provided for @comingScan.
-  ///
-  /// In en, this message translates to:
-  /// **'Scanning comes in the next test build.'**
-  String get comingScan;
-
   /// No description provided for @comingAccounts.
   ///
   /// In en, this message translates to:
@@ -1029,6 +1023,522 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This fabric isn\'t in the catalog.'**
   String get notFound;
+
+  /// No description provided for @permTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera access'**
+  String get permTitle;
+
+  /// No description provided for @permBody.
+  ///
+  /// In en, this message translates to:
+  /// **'FabriSCAN+ uses the camera only to take a photo of your fabric. The photo stays on your phone.'**
+  String get permBody;
+
+  /// No description provided for @permAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera'**
+  String get permAllow;
+
+  /// No description provided for @permUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload a photo instead'**
+  String get permUpload;
+
+  /// No description provided for @permDeniedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera is turned off'**
+  String get permDeniedTitle;
+
+  /// No description provided for @permDeniedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'To scan with the camera, turn it on in your phone\'s Settings: Apps → FabriSCAN+ → Permissions → Camera.'**
+  String get permDeniedBody;
+
+  /// No description provided for @permOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get permOpenSettings;
+
+  /// No description provided for @camClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close camera'**
+  String get camClose;
+
+  /// No description provided for @camShutter.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get camShutter;
+
+  /// No description provided for @camGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get camGallery;
+
+  /// No description provided for @camTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo tips'**
+  String get camTips;
+
+  /// No description provided for @camTip1.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill the frame with fabric'**
+  String get camTip1;
+
+  /// No description provided for @camTip2.
+  ///
+  /// In en, this message translates to:
+  /// **'Move closer · 10–15 cm'**
+  String get camTip2;
+
+  /// No description provided for @camTip3.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid flash glare'**
+  String get camTip3;
+
+  /// No description provided for @camTip4.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold steady'**
+  String get camTip4;
+
+  /// No description provided for @camError.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera couldn\'t start. You can upload a photo instead.'**
+  String get camError;
+
+  /// No description provided for @reviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your photo'**
+  String get reviewTitle;
+
+  /// No description provided for @reviewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Is the fabric sharp and filling the frame?'**
+  String get reviewHint;
+
+  /// No description provided for @reviewRetake.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get reviewRetake;
+
+  /// No description provided for @reviewUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Use photo'**
+  String get reviewUse;
+
+  /// No description provided for @photoUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open this photo. Try another.'**
+  String get photoUnreadable;
+
+  /// No description provided for @analyzingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking at the weave…'**
+  String get analyzingTitle;
+
+  /// No description provided for @analyzing1.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking texture and sheen'**
+  String get analyzing1;
+
+  /// No description provided for @analyzing2.
+  ///
+  /// In en, this message translates to:
+  /// **'Comparing with {count} fabrics'**
+  String analyzing2(int count);
+
+  /// No description provided for @analyzing3.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost done'**
+  String get analyzing3;
+
+  /// No description provided for @analyzingError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while checking the photo.'**
+  String get analyzingError;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
+
+  /// No description provided for @resultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get resultTitle;
+
+  /// No description provided for @yourPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo'**
+  String get yourPhoto;
+
+  /// No description provided for @scannedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned just now'**
+  String get scannedNow;
+
+  /// No description provided for @confHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High match'**
+  String get confHigh;
+
+  /// No description provided for @confPossible.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible match'**
+  String get confPossible;
+
+  /// No description provided for @confNotSure.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure'**
+  String get confNotSure;
+
+  /// No description provided for @checkOnGarment.
+  ///
+  /// In en, this message translates to:
+  /// **'Check these on your garment'**
+  String get checkOnGarment;
+
+  /// No description provided for @viewCareGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'View care guide'**
+  String get viewCareGuide;
+
+  /// No description provided for @notRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Not right? See other possible matches'**
+  String get notRight;
+
+  /// No description provided for @savedLikely.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to History · This is a likely match, not a lab test.'**
+  String get savedLikely;
+
+  /// No description provided for @otherMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Other possible matches'**
+  String get otherMatchesTitle;
+
+  /// No description provided for @otherMatchesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If {fabric} doesn\'t look right, compare these. Tap one to see its care guide.'**
+  String otherMatchesBody(String fabric);
+
+  /// No description provided for @savedAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved {fabric} to History'**
+  String savedAs(String fabric);
+
+  /// No description provided for @couldBeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This could be…'**
+  String get couldBeTitle;
+
+  /// No description provided for @couldBeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'These fabrics look alike. Compare the details with your garment and pick the one that matches.'**
+  String get couldBeBody;
+
+  /// No description provided for @couldBeTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip: hold the garment up to the light and compare how see-through and stiff it is.'**
+  String get couldBeTip;
+
+  /// No description provided for @optionN.
+  ///
+  /// In en, this message translates to:
+  /// **'Option {n}'**
+  String optionN(int n);
+
+  /// No description provided for @thisOne.
+  ///
+  /// In en, this message translates to:
+  /// **'This one · View care guide'**
+  String get thisOne;
+
+  /// No description provided for @noneOfThese.
+  ///
+  /// In en, this message translates to:
+  /// **'None of these?'**
+  String get noneOfThese;
+
+  /// No description provided for @browse.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse'**
+  String get browse;
+
+  /// No description provided for @pickedSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'The fabric you pick is saved to History.'**
+  String get pickedSaved;
+
+  /// No description provided for @cantTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t identify this fabric'**
+  String get cantTitle;
+
+  /// No description provided for @cantBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo may be blurry or too dark, or it may not be a fabric FabriSCAN+ knows yet.'**
+  String get cantBody;
+
+  /// No description provided for @cantTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again with these tips'**
+  String get cantTips;
+
+  /// No description provided for @retakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake photo'**
+  String get retakePhoto;
+
+  /// No description provided for @browseFabrics.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse fabrics'**
+  String get browseFabrics;
+
+  /// No description provided for @scopeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'FabriSCAN+ covers modern dress fabrics in {categories}.'**
+  String scopeNote(String categories);
+
+  /// No description provided for @nothingSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing was saved to History.'**
+  String get nothingSaved;
+
+  /// No description provided for @historyOnPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'On this phone'**
+  String get historyOnPhone;
+
+  /// No description provided for @historyFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest first · Tap a scan to see its care guide'**
+  String get historyFooter;
+
+  /// No description provided for @historyDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {fabric} scan'**
+  String historyDelete(String fabric);
+
+  /// No description provided for @deleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this scan?'**
+  String get deleteTitle;
+
+  /// No description provided for @deleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{fabric} from {when} will be removed from History. This can\'t be undone.'**
+  String deleteBody(String fabric, String when);
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan deleted'**
+  String get deleted;
+
+  /// No description provided for @savedScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved scan'**
+  String get savedScan;
+
+  /// No description provided for @sourceCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get sourceCamera;
+
+  /// No description provided for @sourceGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get sourceGallery;
+
+  /// No description provided for @aboutFabric.
+  ///
+  /// In en, this message translates to:
+  /// **'About {fabric}'**
+  String aboutFabric(String fabric);
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {time}'**
+  String today(String time);
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday, {time}'**
+  String yesterday(String time);
+
+  /// No description provided for @todayShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get todayShort;
+
+  /// No description provided for @yesterdayShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterdayShort;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// No description provided for @profileData.
+  ///
+  /// In en, this message translates to:
+  /// **'DATA'**
+  String get profileData;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all history'**
+  String get clearAll;
+
+  /// No description provided for @clearAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all history?'**
+  String get clearAllTitle;
+
+  /// No description provided for @clearAllBody.
+  ///
+  /// In en, this message translates to:
+  /// **'All {count} saved scans and their photos will be removed from this phone. This can\'t be undone.'**
+  String clearAllBody(int count);
+
+  /// No description provided for @clearAllYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get clearAllYes;
+
+  /// No description provided for @cleared.
+  ///
+  /// In en, this message translates to:
+  /// **'History cleared'**
+  String get cleared;
+
+  /// No description provided for @profileScanCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No scans saved yet} =1{1 scan saved on this phone} other{{count} scans saved on this phone}}'**
+  String profileScanCount(int count);
+
+  /// No description provided for @testScannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'TEST BUILD · SCANNER'**
+  String get testScannerTitle;
+
+  /// No description provided for @testScannerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no trained scanner yet. Choose which result the test scanner gives, to try every screen.'**
+  String get testScannerBody;
+
+  /// No description provided for @testCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle'**
+  String get testCycle;
+
+  /// No description provided for @testA.
+  ///
+  /// In en, this message translates to:
+  /// **'A'**
+  String get testA;
+
+  /// No description provided for @testB.
+  ///
+  /// In en, this message translates to:
+  /// **'B'**
+  String get testB;
+
+  /// No description provided for @testC.
+  ///
+  /// In en, this message translates to:
+  /// **'C'**
+  String get testC;
+
+  /// No description provided for @testScannerBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Test scanner: results are examples, not a real identification.'**
+  String get testScannerBanner;
 }
 
 class _AppLocalizationsDelegate

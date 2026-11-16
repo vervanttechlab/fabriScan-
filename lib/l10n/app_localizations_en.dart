@@ -91,9 +91,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navScan => 'Scan fabric';
 
   @override
-  String get comingScan => 'Scanning comes in the next test build.';
-
-  @override
   String get comingAccounts =>
       'Accounts come in a later test build. Everything works as a guest.';
 
@@ -554,4 +551,302 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notFound => 'This fabric isn\'t in the catalog.';
+
+  @override
+  String get permTitle => 'Allow camera access';
+
+  @override
+  String get permBody =>
+      'FabriSCAN+ uses the camera only to take a photo of your fabric. The photo stays on your phone.';
+
+  @override
+  String get permAllow => 'Allow camera';
+
+  @override
+  String get permUpload => 'Upload a photo instead';
+
+  @override
+  String get permDeniedTitle => 'Camera is turned off';
+
+  @override
+  String get permDeniedBody =>
+      'To scan with the camera, turn it on in your phone\'s Settings: Apps → FabriSCAN+ → Permissions → Camera.';
+
+  @override
+  String get permOpenSettings => 'Open Settings';
+
+  @override
+  String get camClose => 'Close camera';
+
+  @override
+  String get camShutter => 'Take photo';
+
+  @override
+  String get camGallery => 'Choose from gallery';
+
+  @override
+  String get camTips => 'Photo tips';
+
+  @override
+  String get camTip1 => 'Fill the frame with fabric';
+
+  @override
+  String get camTip2 => 'Move closer · 10–15 cm';
+
+  @override
+  String get camTip3 => 'Avoid flash glare';
+
+  @override
+  String get camTip4 => 'Hold steady';
+
+  @override
+  String get camError =>
+      'The camera couldn\'t start. You can upload a photo instead.';
+
+  @override
+  String get reviewTitle => 'Check your photo';
+
+  @override
+  String get reviewHint => 'Is the fabric sharp and filling the frame?';
+
+  @override
+  String get reviewRetake => 'Retake';
+
+  @override
+  String get reviewUse => 'Use photo';
+
+  @override
+  String get photoUnreadable => 'Couldn\'t open this photo. Try another.';
+
+  @override
+  String get analyzingTitle => 'Looking at the weave…';
+
+  @override
+  String get analyzing1 => 'Checking texture and sheen';
+
+  @override
+  String analyzing2(int count) {
+    return 'Comparing with $count fabrics';
+  }
+
+  @override
+  String get analyzing3 => 'Almost done';
+
+  @override
+  String get analyzingError => 'Something went wrong while checking the photo.';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get resultTitle => 'Result';
+
+  @override
+  String get yourPhoto => 'Your photo';
+
+  @override
+  String get scannedNow => 'Scanned just now';
+
+  @override
+  String get confHigh => 'High match';
+
+  @override
+  String get confPossible => 'Possible match';
+
+  @override
+  String get confNotSure => 'Not sure';
+
+  @override
+  String get checkOnGarment => 'Check these on your garment';
+
+  @override
+  String get viewCareGuide => 'View care guide';
+
+  @override
+  String get notRight => 'Not right? See other possible matches';
+
+  @override
+  String get savedLikely =>
+      'Saved to History · This is a likely match, not a lab test.';
+
+  @override
+  String get otherMatchesTitle => 'Other possible matches';
+
+  @override
+  String otherMatchesBody(String fabric) {
+    return 'If $fabric doesn\'t look right, compare these. Tap one to see its care guide.';
+  }
+
+  @override
+  String savedAs(String fabric) {
+    return 'Saved $fabric to History';
+  }
+
+  @override
+  String get couldBeTitle => 'This could be…';
+
+  @override
+  String get couldBeBody =>
+      'These fabrics look alike. Compare the details with your garment and pick the one that matches.';
+
+  @override
+  String get couldBeTip =>
+      'Tip: hold the garment up to the light and compare how see-through and stiff it is.';
+
+  @override
+  String optionN(int n) {
+    return 'Option $n';
+  }
+
+  @override
+  String get thisOne => 'This one · View care guide';
+
+  @override
+  String get noneOfThese => 'None of these?';
+
+  @override
+  String get browse => 'Browse';
+
+  @override
+  String get pickedSaved => 'The fabric you pick is saved to History.';
+
+  @override
+  String get cantTitle => 'We couldn\'t identify this fabric';
+
+  @override
+  String get cantBody =>
+      'The photo may be blurry or too dark, or it may not be a fabric FabriSCAN+ knows yet.';
+
+  @override
+  String get cantTips => 'Try again with these tips';
+
+  @override
+  String get retakePhoto => 'Retake photo';
+
+  @override
+  String get browseFabrics => 'Browse fabrics';
+
+  @override
+  String scopeNote(String categories) {
+    return 'FabriSCAN+ covers modern dress fabrics in $categories.';
+  }
+
+  @override
+  String get nothingSaved => 'Nothing was saved to History.';
+
+  @override
+  String get historyOnPhone => 'On this phone';
+
+  @override
+  String get historyFooter => 'Newest first · Tap a scan to see its care guide';
+
+  @override
+  String historyDelete(String fabric) {
+    return 'Delete $fabric scan';
+  }
+
+  @override
+  String get deleteTitle => 'Delete this scan?';
+
+  @override
+  String deleteBody(String fabric, String when) {
+    return '$fabric from $when will be removed from History. This can\'t be undone.';
+  }
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get deleted => 'Scan deleted';
+
+  @override
+  String get savedScan => 'Saved scan';
+
+  @override
+  String get sourceCamera => 'Camera';
+
+  @override
+  String get sourceGallery => 'Gallery';
+
+  @override
+  String aboutFabric(String fabric) {
+    return 'About $fabric';
+  }
+
+  @override
+  String today(String time) {
+    return 'Today, $time';
+  }
+
+  @override
+  String yesterday(String time) {
+    return 'Yesterday, $time';
+  }
+
+  @override
+  String get todayShort => 'Today';
+
+  @override
+  String get yesterdayShort => 'Yesterday';
+
+  @override
+  String get seeAll => 'See all';
+
+  @override
+  String get profileData => 'DATA';
+
+  @override
+  String get clearAll => 'Clear all history';
+
+  @override
+  String get clearAllTitle => 'Clear all history?';
+
+  @override
+  String clearAllBody(int count) {
+    return 'All $count saved scans and their photos will be removed from this phone. This can\'t be undone.';
+  }
+
+  @override
+  String get clearAllYes => 'Clear all';
+
+  @override
+  String get cleared => 'History cleared';
+
+  @override
+  String profileScanCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count scans saved on this phone',
+      one: '1 scan saved on this phone',
+      zero: 'No scans saved yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get testScannerTitle => 'TEST BUILD · SCANNER';
+
+  @override
+  String get testScannerBody =>
+      'There is no trained scanner yet. Choose which result the test scanner gives, to try every screen.';
+
+  @override
+  String get testCycle => 'Cycle';
+
+  @override
+  String get testA => 'A';
+
+  @override
+  String get testB => 'B';
+
+  @override
+  String get testC => 'C';
+
+  @override
+  String get testScannerBanner =>
+      'Test scanner: results are examples, not a real identification.';
 }

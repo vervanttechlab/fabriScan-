@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- US-10: camera for scanning fabric. Not required, so phones without one can still upload photos. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <application
-        android:label="fabriscan"
+        android:label="FabriSCAN+"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,0 +1,22 @@
+{
+  "modelVersion": "fake-dev",
+  "status": "[PLACEHOLDER] Development stand-in. No trained model yet; the app uses FakeClassifier. Replaced by ml-engineer at M3.",
+  "inputSize": 224,
+  "mean": [
+    0,
+    0,
+    0
+  ],
+  "std": [
+    1,
+    1,
+    1
+  ],
+  "temperature": 1,
+  "t_high": 0.8,
+  "t_low": 0.5,
+  "margin": 0.15,
+  "trainedOn": "",
+  "testTop1": null,
+  "testTop3": null
+}

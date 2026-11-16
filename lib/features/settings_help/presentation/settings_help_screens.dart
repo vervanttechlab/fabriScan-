@@ -1,9 +1,11 @@
-import 'package:fabriscan/app/shell.dart';
 import 'package:fabriscan/core/config/app_config.dart';
 import 'package:fabriscan/core/db/prefs.dart';
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/hibla_logo.dart';
 import 'package:fabriscan/features/catalog/data/catalog_repository.dart';
+import 'package:fabriscan/features/history/data/history_repository.dart';
+import 'package:fabriscan/features/identify/data/identify_providers.dart';
+import 'package:fabriscan/features/identify/domain/fabric_classifier.dart';
 import 'package:fabriscan/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,42 +18,6 @@ final packageInfoProvider = FutureProvider<PackageInfo>(
   (ref) => PackageInfo.fromPlatform(),
 );
 
-/// S19 History. Saving scans arrives with the scan flow (M2); until then
-/// the empty state (US-41) is all there is to show.
-class HistoryScreen extends StatelessWidget {
-  const new({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context);
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
-          children: [
-            Text(
-              l.historyTitle,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 24),
-            EmptyState(
-              icon: Symbols.history_rounded,
-              title: l.historyEmptyTitle,
-              body: l.historyEmptyBody,
-              action: FilledButton.icon(
-                onPressed: () => AppShell.startScan(context),
-                icon: const Icon(Symbols.photo_camera_rounded),
-                label: Text(l.navScan),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 /// S23 Profile & settings (guest view; accounts arrive in M4).
 class ProfileScreen extends ConsumerWidget {
   const new({super.key});
@@ -63,6 +29,8 @@ class ProfileScreen extends ConsumerWidget {
     final mode =
         ref.watch(settingsProvider).value?.themeMode ?? ThemeMode.system;
     final version = ref.watch(packageInfoProvider).value?.version ?? '';
+    final scanCount = ref.watch(historyProvider).value?.length ?? 0;
+    final standIn = ref.watch(modelMetaProvider).value?.isStandIn ?? false;
     Widget heading(String text) => Padding(
       padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
       child: Text(
@@ -106,7 +74,7 @@ class ProfileScreen extends ConsumerWidget {
                                 style: t.textTheme.titleMedium,
                               ),
                               Text(
-                                l.profileGuestScans,
+                                l.profileScanCount(scanCount),
                                 style: t.textTheme.bodySmall?.copyWith(
                                   color: t.colorScheme.onSurfaceVariant,
                                 ),
@@ -195,6 +163,53 @@ class ProfileScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            heading(l.profileData),
+            Card.outlined(
+              clipBehavior: Clip.antiAlias,
+              child: ListTile(
+                minTileHeight: 56,
+                enabled: scanCount > 0,
+                iconColor: t.colorScheme.error,
+                textColor: t.colorScheme.error,
+                leading: const Icon(Symbols.delete_sweep_rounded),
+                title: Text(l.clearAll),
+                onTap: () => _clearAll(context, ref, scanCount),
+              ),
+            ),
+            if (standIn) ...[
+              heading(l.testScannerTitle),
+              Text(
+                l.testScannerBody,
+                style: t.textTheme.bodySmall?.copyWith(
+                  color: t.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 8),
+              SegmentedButton<TestScenario>(
+                showSelectedIcon: false,
+                segments: [
+                  ButtonSegment(
+                    value: TestScenario.cycle,
+                    label: Text(l.testCycle),
+                  ),
+                  ButtonSegment(
+                    value: TestScenario.confident,
+                    label: Text(l.testA),
+                  ),
+                  ButtonSegment(
+                    value: TestScenario.unsure,
+                    label: Text(l.testB),
+                  ),
+                  ButtonSegment(
+                    value: TestScenario.cantIdentify,
+                    label: Text(l.testC),
+                  ),
+                ],
+                selected: {ref.watch(testScenarioProvider)},
+                onSelectionChanged: (v) =>
+                    ref.read(testScenarioProvider.notifier).value = v.first,
+              ),
+            ],
             const SizedBox(height: 24),
             Text(
               l.profileFooter(version),
@@ -206,6 +221,37 @@ class ProfileScreen extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+Future<void> _clearAll(BuildContext context, WidgetRef ref, int count) async {
+  final l = AppLocalizations.of(context);
+  final ok = await showDialog<bool>(
+    context: context,
+    builder: (d) => AlertDialog(
+      title: Text(l.clearAllTitle),
+      content: Text(l.clearAllBody(count)),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(d, false),
+          child: Text(l.cancel),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(d, true),
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.error,
+          ),
+          child: Text(l.clearAllYes),
+        ),
+      ],
+    ),
+  );
+  if (ok != true) return;
+  await ref.read(historyRepositoryProvider).clearAll();
+  if (context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l.cleared), behavior: SnackBarBehavior.floating),
     );
   }
 }
@@ -294,6 +340,7 @@ class AboutScreen extends ConsumerWidget {
     final t = Theme.of(context);
     final version = ref.watch(packageInfoProvider).value?.version ?? '';
     final catalog = ref.watch(catalogProvider).value;
+    final meta = ref.watch(modelMetaProvider).value;
     final muted = t.textTheme.bodyMedium?.copyWith(
       color: t.colorScheme.onSurfaceVariant,
     );
@@ -408,7 +455,11 @@ class AboutScreen extends ConsumerWidget {
                 ListTile(title: Text(l.aboutApp), trailing: Text(version)),
                 ListTile(
                   title: Text(l.aboutScanner),
-                  trailing: Text(l.aboutScannerNone),
+                  trailing: Text(
+                    meta == null || meta.isStandIn
+                        ? l.aboutScannerNone
+                        : meta.modelVersion,
+                  ),
                 ),
                 ListTile(
                   title: Text(l.aboutContent),
