@@ -1,0 +1,21 @@
+rules_version = '2';
+
+// ADR-005: registered users can read and write only their own scans.
+// Path: users/{uid}/scans/{scanId}. Everything else is denied.
+// Tests: firebase/rules-test (emulator), added in M4.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid;
+
+      match /scans/{scanId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

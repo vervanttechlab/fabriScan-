@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  flutter:
+    name: Analyze, test, build APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.50.0
+          cache: true
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze
+      - run: flutter test --coverage
+
+      - name: Build split release APK (unsigned until signing secrets are set)
+        run: flutter build apk --release --split-per-abi --target-platform android-arm,android-arm64
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: build/app/outputs/flutter-apk/*.apk
+          retention-days: 14
+
+  tools:
+    name: Content & ML tools
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dataset checker tests
+        run: python -I -m unittest discover -s tools/ml/tests
+      - name: Content check
+        run: |
+          if [ -f tools/content/build_catalog.py ]; then
+            pip install pandas openpyxl
+            python tools/content/build_catalog.py --check
+          else
+            echo "build_catalog.py not created yet (content-engineer, M1) - skipping"
+          fi

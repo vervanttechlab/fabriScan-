@@ -1,0 +1,818 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FabriSCAN+ Prototype</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<style>
+/* Layout: review console (screen index + controls) beside a phone frame on desktop; the phone fills the screen on a real phone.
+   Tokens = Hibla design system (docs/design/tokens.json), M3 role names. */
+:root{
+  --primary:#2E3F8F;--onPrimary:#FFFFFF;--primaryContainer:#DDE1F7;--onPrimaryContainer:#17225A;
+  --secondary:#6B4E35;--onSecondary:#FFFFFF;--secondaryContainer:#F2DEC8;--onSecondaryContainer:#2A1A0B;
+  --tertiary:#3D6B37;--onTertiary:#FFFFFF;--tertiaryContainer:#D3EBC8;--onTertiaryContainer:#10290D;
+  --error:#B3261E;--onError:#FFFFFF;--errorContainer:#F9DEDC;--onErrorContainer:#410E0B;
+  --surface:#FAF6EE;--onSurface:#3B2A1E;--onSurfaceVariant:#6B5644;
+  --scLowest:#FFFFFF;--scLow:#F6F0E4;--sc:#F1EADC;--scHigh:#EBE3D3;--scHighest:#E5DCCA;
+  --outline:#8C7A68;--outlineVariant:#D8CCB9;--inverseSurface:#3B2A1E;--onInverseSurface:#FAF6EE;
+  --confHigh:#2F6B3A;--confHighC:#D5EDD3;--onConfHighC:#0F2E14;
+  --confPos:#8A5A00;--confPosC:#FBE7C2;--onConfPosC:#2E1D00;
+  --confNo:#A23A2A;--confNoC:#F9DCD5;--onConfNoC:#3D0A03;
+  --glass:rgba(255,252,245,.78);--glassLine:rgba(59,42,30,.10);
+  --stage:#E9E3D7;--frame:#141210;
+  --f-disp:"Fraunces",Georgia,serif;--f-ui:"Plus Jakarta Sans",Roboto,system-ui,sans-serif;
+  --ts:1;--gut:16px;
+  --e-std:cubic-bezier(.2,0,0,1);--e-dec:cubic-bezier(.05,.7,.1,1);--e-acc:cubic-bezier(.3,0,.8,.15);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --primary:#B7C2FF;--onPrimary:#15205A;--primaryContainer:#34418A;--onPrimaryContainer:#DDE1FF;
+  --secondary:#DCC1A6;--onSecondary:#3D2914;--secondaryContainer:#55402B;--onSecondaryContainer:#F2DEC8;
+  --tertiary:#9FD39A;--onTertiary:#0E3A10;--tertiaryContainer:#255322;--onTertiaryContainer:#D3EBC8;
+  --error:#FFB4AB;--onError:#690005;--errorContainer:#93000A;--onErrorContainer:#FFDAD6;
+  --surface:#17130F;--onSurface:#F1E8DA;--onSurfaceVariant:#CDBFAE;
+  --scLowest:#120E0B;--scLow:#1F1A15;--sc:#2A241E;--scHigh:#342D26;--scHighest:#3F3730;
+  --outline:#9A8B7A;--outlineVariant:#4E4337;--inverseSurface:#F1E8DA;--onInverseSurface:#3B2A1E;
+  --confHigh:#8FD49A;--confHighC:#1E4A26;--onConfHighC:#D5EDD3;
+  --confPos:#F2C46B;--confPosC:#5A3D00;--onConfPosC:#FBE7C2;
+  --confNo:#FFB4A6;--confNoC:#7A2618;--onConfNoC:#F9DCD5;
+  --glass:rgba(31,26,21,.78);--glassLine:rgba(241,232,218,.10);
+  --stage:#0E0C0A;--frame:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --primary:#B7C2FF;--onPrimary:#15205A;--primaryContainer:#34418A;--onPrimaryContainer:#DDE1FF;
+  --secondary:#DCC1A6;--onSecondary:#3D2914;--secondaryContainer:#55402B;--onSecondaryContainer:#F2DEC8;
+  --tertiary:#9FD39A;--onTertiary:#0E3A10;--tertiaryContainer:#255322;--onTertiaryContainer:#D3EBC8;
+  --error:#FFB4AB;--onError:#690005;--errorContainer:#93000A;--onErrorContainer:#FFDAD6;
+  --surface:#17130F;--onSurface:#F1E8DA;--onSurfaceVariant:#CDBFAE;
+  --scLowest:#120E0B;--scLow:#1F1A15;--sc:#2A241E;--scHigh:#342D26;--scHighest:#3F3730;
+  --outline:#9A8B7A;--outlineVariant:#4E4337;--inverseSurface:#F1E8DA;--onInverseSurface:#3B2A1E;
+  --confHigh:#8FD49A;--confHighC:#1E4A26;--onConfHighC:#D5EDD3;
+  --confPos:#F2C46B;--confPosC:#5A3D00;--onConfPosC:#FBE7C2;
+  --confNo:#FFB4A6;--confNoC:#7A2618;--onConfNoC:#F9DCD5;
+  --glass:rgba(31,26,21,.78);--glassLine:rgba(241,232,218,.10);
+  --stage:#0E0C0A;--frame:#000000;color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--stage);color:var(--onSurface);font-family:var(--f-ui);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.ms{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:calc(24px*var(--ts));line-height:1;display:inline-block;white-space:nowrap;-webkit-font-feature-settings:"liga";font-feature-settings:"liga";font-variation-settings:"FILL" 0;flex:none;user-select:none}
+.fill{font-variation-settings:"FILL" 1}
+
+/* ---------- console (desktop) ---------- */
+.shell{display:grid;grid-template-columns:320px 1fr;height:100%}
+.panel{background:var(--scLow);border-right:1px solid var(--outlineVariant);overflow:auto;padding:20px 16px 32px;display:flex;flex-direction:column;gap:18px}
+.panel h1{font-family:var(--f-disp);font-size:22px;margin:0;font-weight:600}
+.panel .sub{font-size:12.5px;color:var(--onSurfaceVariant);margin:2px 0 0;line-height:1.45}
+.pgroup{display:grid;gap:8px}
+.pgroup>b{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--onSurfaceVariant)}
+.seg{display:flex;border:1px solid var(--outline);border-radius:999px;overflow:hidden}
+.seg button{flex:1;min-height:40px;font-size:13px;font-weight:600;border-right:1px solid var(--outline)}
+.seg button:last-child{border-right:0}
+.app .seg button{font:600 calc(14px*var(--ts))/1.2 var(--f-ui)}
+.seg button[aria-pressed="true"]{background:var(--secondaryContainer);color:var(--onSecondaryContainer)}
+.idx{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.idx button{width:100%;text-align:left;display:flex;gap:10px;align-items:baseline;padding:7px 10px;border-radius:10px;font-size:13.5px;min-height:34px}
+.idx button:hover{background:var(--sc)}
+.idx button[aria-current="true"]{background:var(--primaryContainer);color:var(--onPrimaryContainer);font-weight:700}
+.idx code{font:600 11.5px/1 var(--f-ui);font-variant-numeric:tabular-nums;color:var(--onSurfaceVariant);min-width:62px}
+.idx button[aria-current="true"] code{color:inherit}
+.demo{display:grid;gap:6px}
+.demo button{text-align:left;padding:10px 12px;border-radius:12px;background:var(--sc);font-size:13px;line-height:1.35;min-height:44px}
+.demo button b{display:block;font-size:13px}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13.5px;min-height:40px}
+.sw{width:44px;height:26px;border-radius:999px;background:var(--scHighest);border:2px solid var(--outline);position:relative;flex:none}
+.sw::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--outline);top:3px;left:3px;transition:.15s var(--e-std)}
+.sw[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.sw[aria-checked="true"]::after{left:21px;background:var(--onPrimary)}
+.stage{display:grid;place-items:center;overflow:hidden;position:relative;padding:20px}
+.stagecap{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:12px;color:var(--onSurfaceVariant)}
+.devwrap{position:relative}
+.device{position:absolute;top:0;left:0;transform-origin:top left;width:calc(var(--dw)*1px + 24px);height:calc(var(--dh)*1px + 24px);background:var(--frame);border-radius:52px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.25),inset 0 0 0 2px #2a2724}
+.app{width:100%;height:100%;border-radius:40px;overflow:hidden;position:relative;background:var(--surface);color:var(--onSurface);isolation:isolate}
+.menuBtn{display:none}
+
+/* ---------- phone mode ---------- */
+@media (max-width:760px){
+  .shell{display:block}
+  .panel{position:fixed;inset:0 auto 0 0;width:min(340px,88vw);z-index:50;transform:translateX(-105%);transition:transform .3s var(--e-dec);padding-top:calc(20px + env(safe-area-inset-top,0px))}
+  .panel.open{transform:none;box-shadow:0 0 40px rgba(0,0,0,.3)}
+  .stage{padding:0;height:100%;display:block}
+  .devwrap{width:100%!important;height:100%!important}
+  .device{position:static;transform:none!important;width:100%;height:100%;border-radius:0;padding:0;box-shadow:none}
+  .app{border-radius:0}
+  .stagecap,.sbar{display:none!important}
+  .menuBtn{display:grid;place-items:center;position:fixed;right:0;top:50%;z-index:40;width:22px;height:56px;border-radius:10px 0 0 10px;background:var(--inverseSurface);color:var(--onInverseSurface);opacity:.55}
+  .scrim50{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:45}
+}
+
+/* ---------- app type roles (scale with --ts) ---------- */
+.dS{font:600 calc(36px*var(--ts))/1.2 var(--f-disp);letter-spacing:-.01em}
+.hL{font:600 calc(32px*var(--ts))/1.22 var(--f-disp);letter-spacing:-.01em}
+.hM{font:600 calc(28px*var(--ts))/1.25 var(--f-disp)}
+.hS{font:600 calc(24px*var(--ts))/1.3 var(--f-disp)}
+.tL{font:700 calc(20px*var(--ts))/1.4 var(--f-ui)}
+.tM{font:700 calc(16px*var(--ts))/1.5 var(--f-ui)}
+.tS{font:700 calc(14px*var(--ts))/1.45 var(--f-ui)}
+.bL{font:400 calc(16px*var(--ts))/1.5 var(--f-ui)}
+.bM{font:400 calc(14px*var(--ts))/1.45 var(--f-ui)}
+.bS{font:500 calc(12px*var(--ts))/1.35 var(--f-ui)}
+.lL{font:600 calc(14px*var(--ts))/1.4 var(--f-ui)}
+.lM{font:600 calc(12px*var(--ts))/1.35 var(--f-ui);letter-spacing:.03em}
+.lS{font:600 calc(11px*var(--ts))/1.4 var(--f-ui);letter-spacing:.04em}
+.muted{color:var(--onSurfaceVariant)}
+.app h1,.app h2,.app h3,.app h4,.app p{margin:0;text-wrap:balance}
+.app p{text-wrap:pretty}
+
+/* ---------- app structure ---------- */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--surface);animation:enter .3s var(--e-dec)}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sbar{height:34px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font:700 13px var(--f-ui);position:relative;z-index:5}
+.sbar .ms{font-size:16px}
+.sbar.onDark{color:#fff}
+.body{flex:1;overflow:auto;overscroll-behavior:contain;padding:0 var(--gut) 24px;display:flex;flex-direction:column;gap:16px}
+.body>*{flex-shrink:0}
+.body.navpad{padding-bottom:110px}
+.body.flush{padding-left:0;padding-right:0}
+.bar{display:flex;align-items:center;gap:4px;min-height:56px;padding:0 4px;flex:none}
+.bar .ttl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none}
+.ib:active{background:color-mix(in srgb,var(--onSurface) 10%,transparent)}
+.row{display:flex;align-items:center;gap:12px}
+.stack{display:flex;flex-direction:column;gap:8px}
+.grow{flex:1;min-width:0}
+.btn{min-height:52px;border-radius:999px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 calc(15px*var(--ts))/1.2 var(--f-ui);transition:transform .15s var(--e-std),background .15s;text-align:center}
+.btn:active{transform:scale(.98)}
+.btn.f{background:var(--primary);color:var(--onPrimary)}
+.btn.t{background:var(--secondaryContainer);color:var(--onSecondaryContainer)}
+.btn.o{border:1px solid var(--outline);color:var(--primary)}
+.btn.x{color:var(--primary);padding:0 12px;min-height:48px}
+.btn.d{color:var(--error)}
+.btn.block{width:100%}
+.btn .ms{font-size:calc(20px*var(--ts))}
+.card{background:var(--sc);border-radius:22px;padding:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border-radius:999px;font:600 calc(12.5px*var(--ts))/1.3 var(--f-ui);background:var(--secondaryContainer);color:var(--onSecondaryContainer)}
+.chip .ms{font-size:calc(16px*var(--ts))}
+.chip.out{background:transparent;border:1px solid var(--outline);color:var(--onSurface)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.eyebrow{font:700 calc(11.5px*var(--ts))/1.3 var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--onSurfaceVariant)}
+.sample{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;border:1px dashed var(--outline);font:600 calc(11.5px*var(--ts))/1.35 var(--f-ui);color:var(--onSurfaceVariant);align-self:flex-start}
+.sample .ms{font-size:calc(15px*var(--ts))}
+.banner{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:16px}
+.banner .ms{font-size:calc(22px*var(--ts));margin-top:1px}
+.b-fiber{background:var(--secondaryContainer);color:var(--onSecondaryContainer)}
+.b-info{background:var(--scHigh);color:var(--onSurface)}
+.b-eco{background:var(--tertiaryContainer);color:var(--onTertiaryContainer)}
+.b-err{background:var(--errorContainer);color:var(--onErrorContainer)}
+.b-off{background:var(--confPosC);color:var(--onConfPosC)}
+.divider{height:1px;background:var(--outlineVariant)}
+
+/* fabric textures (stand-ins for macro photos) */
+.tx{background-color:#efe6d0}
+.tx-pina{background-color:#efe7d2;background-image:repeating-linear-gradient(0deg,rgba(140,118,80,.28) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(140,118,80,.22) 0 1px,transparent 1px 4px),radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),transparent 60%)}
+.tx-pinaseda{background-color:#f1e6cf;background-image:repeating-linear-gradient(0deg,rgba(150,120,70,.22) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(150,120,70,.16) 0 1px,transparent 1px 3px),linear-gradient(120deg,transparent 30%,rgba(255,250,235,.85) 50%,transparent 70%)}
+.tx-jusi{background-color:#f3ecdc;background-image:repeating-linear-gradient(90deg,rgba(120,100,70,.18) 0 1px,transparent 1px 2px),repeating-linear-gradient(90deg,transparent 0 22px,rgba(210,190,150,.6) 22px 26px),linear-gradient(160deg,#f7f1e3,#e6d9bc)}
+.tx-organza{background-color:#e9ecf2;background-image:repeating-linear-gradient(0deg,rgba(90,100,130,.16) 0 1px,transparent 1px 2px),repeating-linear-gradient(90deg,rgba(90,100,130,.16) 0 1px,transparent 1px 2px),linear-gradient(135deg,rgba(255,255,255,.7),transparent 45%,rgba(255,255,255,.55) 70%,transparent)}
+.tx-cocoon{background-color:#ece3cf;background-image:repeating-linear-gradient(72deg,rgba(120,95,60,.18) 0 2px,transparent 2px 9px),repeating-linear-gradient(-58deg,rgba(255,255,255,.55) 0 1px,transparent 1px 11px),repeating-linear-gradient(15deg,rgba(120,95,60,.12) 0 1px,transparent 1px 7px)}
+.tx-wool{background-color:#3b3d42;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.08) 0 2px,transparent 2px 5px),repeating-linear-gradient(-45deg,rgba(0,0,0,.18) 0 1px,transparent 1px 6px)}
+.tx-polyvis{background-color:#1f2a44;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 1px,transparent 1px 3px),linear-gradient(120deg,transparent 40%,rgba(255,255,255,.08) 55%,transparent 70%)}
+.tx-cotton{background-color:#f4f5f2;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,transparent 1px 2px),repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 1px,transparent 1px 2px)}
+.tx-linen{background-color:#d9ccb2;background-image:repeating-linear-gradient(0deg,rgba(90,70,40,.2) 0 1px,transparent 1px 3px,rgba(90,70,40,.12) 3px 5px,transparent 5px 7px),repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 2px,transparent 2px 5px,rgba(90,70,40,.15) 5px 6px,transparent 6px 9px)}
+.tx-crepe{background-color:#26222a;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1.5px),radial-gradient(rgba(0,0,0,.35) 1px,transparent 1.5px);background-size:4px 4px,5px 5px;background-position:0 0,2px 3px}
+.tx-satin{background:linear-gradient(115deg,#5b1a2e 0%,#a3445f 34%,#efb6c4 47%,#8d2f4a 60%,#4a1424 100%)}
+.tx-chiffon{background-color:#f1c9cf;background-image:repeating-radial-gradient(ellipse at 20% 120%,rgba(255,255,255,.35) 0 6px,transparent 6px 16px),linear-gradient(160deg,#f6d8dc,#e7aab4)}
+.tx-tulle{background-color:#f3eef1;background-image:radial-gradient(circle,transparent 2.2px,rgba(140,110,130,.45) 2.6px,transparent 3.2px);background-size:7px 6px}
+.tx-lace{background-color:#fbf8f2;background-image:radial-gradient(circle,transparent 5px,rgba(120,100,90,.35) 5.5px,transparent 7px),radial-gradient(circle,rgba(120,100,90,.25) 1.5px,transparent 2px);background-size:22px 22px,11px 11px;background-position:0 0,5px 5px}
+.tx-taffeta{background-color:#2c5f6b;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,transparent 1px 3px),linear-gradient(110deg,#1e4650,#5e8f7d 45%,#a46f8a 55%,#1e4650)}
+.tx-sinamay{background-color:#d8bf8a;background-image:repeating-linear-gradient(0deg,rgba(110,80,30,.55) 0 2px,transparent 2px 7px),repeating-linear-gradient(90deg,rgba(110,80,30,.5) 0 2px,transparent 2px 8px)}
+.tx-inabel{background:repeating-linear-gradient(45deg,#1f2d6b 0 7px,#f3ecdc 7px 10px,#b2332c 10px 12px,#f3ecdc 12px 15px),repeating-linear-gradient(-45deg,#1f2d6b 0 7px,#f3ecdc 7px 10px);background-blend-mode:multiply}
+.tx-tnalak{background-color:#3a1f17;background-image:repeating-linear-gradient(90deg,transparent 0 10px,rgba(231,214,180,.85) 10px 13px,transparent 13px 22px),repeating-linear-gradient(0deg,#3a1f17 0 8px,#8f2a1d 8px 12px,#3a1f17 12px 20px,#e7d6b4 20px 22px)}
+.tx-nonfabric{background:radial-gradient(circle at 60% 40%,#c9b38f 0 22%,#8a7356 40%,#4c3d2c 80%),#4c3d2c;filter:blur(1.5px)}
+.scrimtxt{position:relative;overflow:hidden}
+.scrimtxt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(23,19,15,.82) 100%)}
+.scrimtxt>*{position:relative;z-index:1}
+.scrimtxt.strong::after{background:linear-gradient(180deg,rgba(23,19,15,.38) 0%,rgba(23,19,15,.86) 100%)}
+
+/* bento home */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--sc);border-radius:22px;padding:14px;min-height:76px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;text-align:left;transition:transform .15s var(--e-std)}
+.tile:active{transform:scale(.98)}
+.tile.span{grid-column:1/-1}
+.scanTile{background:var(--primary);color:var(--onPrimary);min-height:150px;position:relative;overflow:hidden;padding:18px}
+.scanTile .weave{position:absolute;inset:0;opacity:.13;background-image:repeating-linear-gradient(0deg,currentColor 0 2px,transparent 2px 10px),repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 10px);mask-image:linear-gradient(90deg,transparent 30%,#000);-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000)}
+.scanTile>*{position:relative}
+.fabBig{position:absolute;right:16px;bottom:16px;width:68px;height:68px;border-radius:20px;background:var(--primaryContainer);color:var(--onPrimaryContainer);display:grid;place-items:center;transition:border-radius .3s var(--e-dec),transform .3s var(--e-dec);animation:breathe 3.2s ease-in-out infinite}
+.scanTile:active .fabBig{border-radius:34px;transform:scale(.94)}
+@keyframes breathe{0%,100%{border-radius:20px}50%{border-radius:28px}}
+.catTile{min-height:96px;color:#fff;padding:12px}
+.catTile .lab{display:flex;flex-direction:column}
+.recent{display:flex;gap:10px;overflow-x:auto;margin:0 calc(var(--gut)*-1);padding:2px var(--gut) 4px;scrollbar-width:none}
+.recent button{flex:none;width:112px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.thumb{border-radius:16px;aspect-ratio:1;width:100%}
+
+/* floating nav */
+.nav{position:absolute;left:12px;right:12px;bottom:14px;z-index:20;height:72px;border-radius:999px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--glassLine);box-shadow:0 6px 24px rgba(0,0,0,.12);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:2px;min-height:56px;justify-content:center;font:600 calc(11px*var(--ts))/1.2 var(--f-ui);color:var(--onSurfaceVariant)}
+.nav .pill{width:56px;height:30px;border-radius:999px;display:grid;place-items:center;transition:background .2s}
+.nav button[aria-current="page"]{color:var(--onSurface)}
+.nav button[aria-current="page"] .pill{background:var(--primaryContainer);color:var(--onPrimaryContainer)}
+.nav button[aria-current="page"] .ms{font-variation-settings:"FILL" 1}
+.nav .navScan{width:58px;height:58px;margin:0 auto;border-radius:20px;background:var(--primary);color:var(--onPrimary);display:grid;place-items:center;box-shadow:0 4px 14px rgba(46,63,143,.35);transition:border-radius .3s var(--e-dec)}
+.nav .navScan:active{border-radius:29px}
+
+/* camera */
+.cam{position:absolute;inset:0;background:#000;color:#fff;display:flex;flex-direction:column}
+.feed{position:absolute;inset:0;transform:scale(1.05)}
+.feed.tx-pina,.feed.tx-satin{animation:sway 6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:scale(1.05) translate(0,0)}50%{transform:scale(1.07) translate(-4px,3px)}}
+.glass{background:rgba(23,19,15,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.camTop{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:4px 12px}
+.camTop .ib{background:rgba(23,19,15,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.reticle{position:absolute;left:50%;top:45%;width:min(72%,280px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:1}
+.reticle i{position:absolute;width:36px;height:36px;border:4px solid #fff;border-radius:6px;animation:ret 2.4s var(--e-std) infinite}
+.reticle i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:18px}
+.reticle i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:18px}
+.reticle i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:18px}
+.reticle i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:18px}
+@keyframes ret{0%,100%{transform:scale(1)}50%{transform:scale(.94)}}
+.tipChip{position:absolute;left:50%;top:calc(100% + 20px);transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;font:600 calc(14px*var(--ts))/1.2 var(--f-ui);white-space:nowrap}
+.camTray{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px 28px 34px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-radius:28px 28px 0 0;border-bottom:0}
+.shutter{width:80px;height:80px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center}
+.shutter span{width:62px;height:62px;border-radius:50%;background:#fff;transition:transform .15s var(--e-std),border-radius .3s var(--e-dec)}
+.shutter:active span{transform:scale(.86);border-radius:22px}
+.galThumb{width:52px;height:52px;border-radius:14px;border:2px solid #fff;justify-self:start}
+.flash{position:absolute;inset:0;background:#fff;z-index:30;animation:flash .35s ease-out forwards;pointer-events:none}
+@keyframes flash{from{opacity:.9}to{opacity:0}}
+
+/* analyzing */
+.anaBox{width:min(70%,260px);aspect-ratio:1;border-radius:28px;position:relative;overflow:hidden;margin:0 auto}
+.anaBox .threads{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(46,63,143,.0) 0 10px,rgba(255,255,255,.55) 10px 12px);animation:weave 1.2s linear infinite;mix-blend-mode:screen}
+.anaBox .threads2{position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0 10px,rgba(183,194,255,.5) 10px 12px);animation:weave2 1.6s linear infinite;mix-blend-mode:screen}
+.anaBox .line{position:absolute;left:0;right:0;height:3px;background:var(--primaryContainer);box-shadow:0 0 18px 6px color-mix(in srgb,var(--primaryContainer) 70%,transparent);animation:scanline 1.4s var(--e-std) infinite alternate}
+@keyframes weave{to{background-position:0 24px}}
+@keyframes weave2{to{background-position:24px 0}}
+@keyframes scanline{from{top:4%}to{top:94%}}
+.prog{height:6px;border-radius:999px;background:var(--scHighest);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--primary);width:0;animation:prog 2.2s var(--e-std) forwards;border-radius:inherit}
+@keyframes prog{to{width:100%}}
+
+/* result */
+.spring{animation:spring .45s var(--e-dec)}
+@keyframes spring{0%{opacity:0;transform:translateY(24px) scale(.96)}70%{opacity:1;transform:translateY(-3px) scale(1.01)}100%{transform:none}}
+.meter{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap}
+.meter .segs{display:flex;gap:4px}
+.meter .segs i{width:26px;height:8px;border-radius:999px;background:var(--scHighest);overflow:hidden;position:relative}
+.meter .segs i.on::after{content:"";position:absolute;inset:0;background:var(--c);transform-origin:left;animation:fillseg .3s var(--e-dec) both}
+.meter .segs i.on:nth-child(2)::after{animation-delay:.1s}.meter .segs i.on:nth-child(3)::after{animation-delay:.2s}
+@keyframes fillseg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.conf{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border-radius:999px;font:700 calc(13px*var(--ts))/1.3 var(--f-ui)}
+.conf .ms{font-size:calc(18px*var(--ts))}
+.c-high{--c:var(--confHigh);background:var(--confHighC);color:var(--onConfHighC)}
+.c-pos{--c:var(--confPos);background:var(--confPosC);color:var(--onConfPosC)}
+.c-no{--c:var(--confNo);background:var(--confNoC);color:var(--onConfNoC)}
+.feat{display:flex;gap:10px;align-items:flex-start}
+.feat .ms{font-size:calc(20px*var(--ts));color:var(--tertiary);margin-top:1px}
+.heroImg{border-radius:28px;min-height:180px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.optCard{background:var(--scLow);border:1px solid var(--outlineVariant);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.optCard .img{height:96px}
+.optCard .in{padding:14px;display:flex;flex-direction:column;gap:10px}
+
+/* care */
+.jump{display:flex;gap:6px;overflow-x:auto;padding:8px var(--gut);margin:0 calc(var(--gut)*-1);position:sticky;top:0;z-index:4;background:var(--surface);scrollbar-width:none}
+.jump button{flex:none;min-height:48px}
+.careSec{background:var(--sc);border-radius:22px;overflow:hidden;scroll-margin-top:60px}
+.careHead{width:100%;display:flex;align-items:center;gap:12px;padding:14px 12px 14px 14px;text-align:left;min-height:64px}
+.careIcon{width:44px;height:44px;border-radius:14px;background:var(--secondaryContainer);color:var(--onSecondaryContainer);display:grid;place-items:center;flex:none}
+.careBody{padding:0 16px 14px;display:flex;flex-direction:column;gap:12px}
+.careSec[data-open="false"] .careBody{display:none}
+.careSec[data-open="false"] .chev{transform:rotate(-90deg)}
+.chev{transition:transform .2s var(--e-std)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.steps li{display:flex;gap:12px;align-items:flex-start;counter-increment:s}
+.steps li::before{content:counter(s);flex:none;width:calc(26px*var(--ts));height:calc(26px*var(--ts));border-radius:50%;background:var(--secondary);color:var(--onSecondary);display:grid;place-items:center;font:700 calc(13px*var(--ts))/1 var(--f-ui);margin-top:-1px}
+.temp{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--scLowest)}
+.dots{display:flex;gap:3px}.dots i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--onSurface)}.dots i.on{background:var(--onSurface)}
+.srcBtn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:48px;color:var(--primary);font:600 calc(13.5px*var(--ts))/1.2 var(--f-ui);padding:0 4px}
+.stainChips{display:flex;flex-wrap:wrap;gap:6px}
+.stainChips button{min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--outline);font:600 calc(13px*var(--ts))/1.2 var(--f-ui);display:inline-flex;align-items:center;gap:6px}
+.stainChips button[aria-pressed="true"]{background:var(--secondaryContainer);color:var(--onSecondaryContainer);border-color:transparent}
+
+/* lists */
+.list{display:flex;flex-direction:column;background:var(--scLow);border-radius:22px;overflow:hidden}
+.li{display:flex;align-items:center;gap:14px;padding:12px 14px;min-height:72px;text-align:left;width:100%}
+.li+.li{border-top:1px solid var(--outlineVariant)}
+.li .lt{width:52px;height:52px;border-radius:14px;flex:none}
+.li .le{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--scHigh);flex:none}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fcard{border-radius:22px;aspect-ratio:4/5;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;text-align:left;gap:2px}
+.catCard{border-radius:24px;min-height:120px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;text-align:left}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font:600 calc(12.5px*var(--ts))/1.3 var(--f-ui);color:var(--onSurfaceVariant)}
+.inp{display:flex;align-items:center;background:var(--scHigh);border-radius:12px 12px 4px 4px;border-bottom:2px solid var(--outline);min-height:56px;padding:0 4px 0 14px}
+.inp input{flex:1;min-width:0;border:0;background:transparent;outline:0;font-size:calc(16px*var(--ts));min-height:52px}
+.inp:focus-within{border-bottom-color:var(--primary)}
+.field.err .inp{border-bottom-color:var(--error)}
+.field .help{font:500 calc(12px*var(--ts))/1.35 var(--f-ui);color:var(--onSurfaceVariant);display:flex;gap:4px;align-items:center}
+.field.err .help{color:var(--error)}
+
+/* overlays */
+.ovl{position:absolute;inset:0;z-index:40;background:rgba(0,0,0,.32);display:flex;align-items:flex-end;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.sheet{width:100%;max-height:90%;background:var(--scLow);border-radius:28px 28px 0 0;display:flex;flex-direction:column;animation:up .3s var(--e-dec)}
+@keyframes up{from{transform:translateY(100%)}}
+.handle{width:32px;height:4px;border-radius:2px;background:var(--outline);margin:12px auto 6px;flex:none}
+.sheet .sb>*{flex-shrink:0}
+.sheet .sb{overflow:auto;padding:4px var(--gut) 28px;display:flex;flex-direction:column;gap:14px}
+.ovl.center{align-items:center;justify-content:center;padding:24px}
+.dlg{background:var(--scHigh);border-radius:28px;padding:24px;width:100%;max-width:320px;display:flex;flex-direction:column;gap:14px;animation:pop .25s var(--e-dec)}
+@keyframes pop{from{opacity:0;transform:scale(.92)}}
+.dlg .acts{display:flex;justify-content:flex-end;gap:4px;flex-wrap:wrap}
+.sysdlg{background:#2b2a2e;color:#f2f0f5;border-radius:26px;padding:22px;max-width:300px;display:flex;flex-direction:column;gap:12px;animation:pop .25s var(--e-dec);font-family:Roboto,system-ui,sans-serif}
+.sysdlg button{min-height:48px;border-radius:999px;background:#3b3a40;color:#d7ccff;font-weight:600}
+.toast{position:absolute;left:16px;right:16px;bottom:100px;z-index:60;background:var(--inverseSurface);color:var(--onInverseSurface);border-radius:12px;padding:14px 16px;font:500 calc(14px*var(--ts))/1.4 var(--f-ui);display:flex;gap:10px;align-items:center;animation:up .25s var(--e-dec)}
+.picker{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.picker button{aspect-ratio:1;border-radius:6px;position:relative}
+.picker .bad{display:grid;place-items:center;background:var(--scHighest);color:var(--onSurfaceVariant);font-size:11px;gap:2px}
+
+/* illustrations */
+.illo{position:relative;height:260px;display:grid;place-items:center}
+.blob{position:absolute;width:220px;height:220px;border-radius:42% 58% 55% 45%/50% 45% 55% 50%;background:var(--sc)}
+.mini{position:relative;width:150px;height:200px;border-radius:26px;border:6px solid var(--onSurface);overflow:hidden}
+.dotsnav{display:flex;gap:6px;justify-content:center}
+.dotsnav i{width:8px;height:8px;border-radius:99px;background:var(--outlineVariant);transition:width .3s var(--e-dec)}
+.dotsnav i.on{width:24px;background:var(--primary)}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:24px 8px}
+.ring{width:132px;height:132px;border-radius:50%;display:grid;place-items:center;background:var(--sc);position:relative}
+.ring::before{content:"";position:absolute;inset:14px;border-radius:50%;border:2px dashed var(--outline)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.15s!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+  .anaBox .threads,.anaBox .threads2,.anaBox .line,.fabBig,.reticle i,.feed{animation:none!important}
+  .anaBox .line{top:50%}
+}
+</style>
+
+<div class="shell">
+  <aside class="panel" id="panel" aria-label="Prototype controls">
+    <div>
+      <h1>FabriSCAN+ prototype</h1>
+      <p class="sub">Clickable prototype v0.1 · Hibla design system · 16 Nov 2026. Tap through the phone. All fabric photos are stand-in textures, and all care text is sample content.</p>
+    </div>
+    <div class="pgroup"><b>Demo paths</b>
+      <div class="demo">
+        <button data-demo="first"><b>UF1 · First launch</b>Splash → onboarding → Continue as Guest → Home</button>
+        <button data-demo="scanA"><b>UF2 · Scan → care (High match)</b>Home → Scan → shutter → Use photo → View care guide</button>
+        <button data-demo="scanB"><b>UF2 · Scan → unsure (top 3)</b>Same path; the app offers Piña, Piña-seda, Jusi</button>
+        <button data-demo="scanC"><b>UF2 · Can't identify</b>Same path; retake tips and Browse</button>
+        <button data-demo="browse"><b>UF3 · Browse</b>Browse → Barong → Piña → care guide</button>
+        <button data-demo="history"><b>UF4 · History</b>History → item → delete</button>
+        <button data-demo="signup"><b>UF5 · Guest → sign up</b>Profile → Create account → import scans</button>
+      </div>
+    </div>
+    <div class="pgroup"><b>Next scan gives result</b>
+      <div class="seg" id="segRes"><button data-res="A">A · High</button><button data-res="B">B · Unsure</button><button data-res="C">C · Can't ID</button></div>
+    </div>
+    <div class="pgroup"><b>Theme</b>
+      <div class="seg" id="segTheme"><button data-th="system">System</button><button data-th="light">Light</button><button data-th="dark">Dark</button></div>
+    </div>
+    <div class="pgroup"><b>Device</b>
+      <div class="seg" id="segDev"><button data-dev="360x800">360×800</button><button data-dev="412x915">412×915</button><button data-dev="390x844">iPhone</button></div>
+    </div>
+    <div class="pgroup">
+      <div class="toggle">Text size 1.3×<button class="sw" role="switch" id="swText" aria-checked="false" aria-label="Text size 1.3 times"></button></div>
+      <div class="toggle">Offline (no internet)<button class="sw" role="switch" id="swOff" aria-checked="false" aria-label="Offline"></button></div>
+      <div class="toggle">Camera permission<span class="seg" id="segPerm" style="flex:none"><button data-perm="unknown" style="padding:0 8px">Ask</button><button data-perm="granted" style="padding:0 8px">On</button><button data-perm="denied" style="padding:0 8px">Off</button></span></div>
+    </div>
+    <div class="pgroup"><b>Screens</b><ul class="idx" id="idx"></ul></div>
+    <button class="btn o" id="reset" style="min-height:44px">Reset prototype</button>
+  </aside>
+  <main class="stage" id="stage">
+    <div class="devwrap" id="devwrap"><div class="device" id="device"><div class="app" id="app"></div></div></div>
+    <div class="stagecap" id="cap"></div>
+  </main>
+</div>
+<button class="menuBtn" id="menuBtn" aria-label="Open screen index"><span class="ms">chevron_left</span></button>
+
+<script>
+/* =================== DATA (mock; names & fiber content from docs/product/fabric-catalog.md) =================== */
+const CATS={
+ barong:{name:'Barong',icon:'checkroom',tx:'pina',desc:'Sheer and crisp fabrics for the barong Tagalog.'},
+ formal:{name:'Formal wear',icon:'work',tx:'wool',desc:'Suiting and shirting fabrics for formal events.'},
+ gowns:{name:'Gowns',icon:'styler',tx:'satin',desc:'Fabrics with sheen, drape and volume for gowns.'},
+ filipiniana:{name:'Filipiniana',icon:'auto_awesome',tx:'inabel',desc:'Heritage and handwoven fabrics for Filipiniana.'}
+};
+const N='natural',S='synthetic',B='blend';
+const F=[
+ ['pina','Piña','Piña cloth',['barong','filipiniana'],[['Pineapple-leaf fiber',N]],'A fine, sheer cloth handwoven from pineapple-leaf fibers. It is light, slightly stiff, and has a soft natural sheen.',['See-through when held up to light','Crisp, slightly stiff feel','Fine, slightly uneven threads'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['pinaseda','Piña-seda','Piña-silk',['barong'],[['Pineapple-leaf fiber + silk',B]],'Piña blended with silk. Softer and smoother than pure piña, with more drape and a brighter sheen.',['Softer and less stiff than piña','Brighter, silky sheen','Even, smooth threads'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['jusi','Jusi','Husi',['barong','filipiniana'],[['Silk',N],['Abacá',N],['Polyester',S]],'A sheer, light fabric often embroidered for barong. Older jusi was silk or abacá; most modern jusi is polyester or a blend.',['Sheer, but smoother than piña','Often has woven stripes or embroidery','Even, machine-regular threads'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['organza','Organza','',['barong'],[['Silk',N],['Polyester',S]],'A sheer, crisp plain-weave fabric that holds its shape. Used for barong, sleeves and gown layers.',['Sheer and very crisp','Holds a stiff shape','Light shimmer'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['cocoon','Cocoon','Gusot-mayaman',['barong'],[['Polyester',S],['Polyester blend',B]],'A light fabric with a built-in crinkled texture, so it looks fine even when wrinkled. Popular for everyday barong.',['Crinkled, wrinkled-look texture','Opaque or semi-sheer','Soft and light'],'syn',[1,'Usually not needed. If you must, low, up to 110 °C']],
+ ['wool','Wool suiting','',['formal'],[['Wool',N],['Wool blend',B]],'A smooth, firm woven wool used for suits and slacks. It drapes well and resists wrinkles.',['Fine diagonal twill lines','Warm, slightly springy feel','Matte or low sheen'],'wool',[2,'Medium, up to 150 °C, with steam and a press cloth']],
+ ['polyvis','Poly-viscose','Tropical suiting',['formal'],[['Polyester + viscose rayon',B]],'A light suiting fabric that mixes polyester and viscose rayon. Cooler than wool and common in local tailoring.',['Smooth, light suiting','Slight sheen','Springs back after crushing'],'syn',[1,'Low, up to 110 °C, on the reverse side']],
+ ['cotton','Cotton','Poplin, broadcloth',['formal'],[['Cotton',N]],'A smooth, tightly woven cotton used for dress shirts. Breathable and easy to iron.',['Tight, fine weave','Soft, matte surface','Creases when crushed'],'cot',[3,'Hot, up to 200 °C, while slightly damp']],
+ ['linen','Linen','',['formal'],[['Flax',N]],'A woven fabric made from flax. It is cool, strong, and wrinkles easily.',['Uneven, slubby threads','Crisp, cool feel','Wrinkles quickly'],'cot',[3,'Hot, up to 200 °C, while slightly damp']],
+ ['crepe','Crepe','',['formal'],[['Polyester',S],['Silk',N],['Wool',N]],'A fabric with a fine pebbly surface that drapes softly. Used for dresses, blouses and suits.',['Fine pebbly surface','Matte, grainy look','Drapes softly'],'del',[1,'Low, up to 110 °C, on the reverse side']],
+ ['satin','Satin','',['gowns'],[['Polyester',S],['Silk',N]],'A smooth weave with a glossy face and a dull back. Common for gowns and linings.',['Glossy front, dull back','Very smooth and slippery','Reflects light as it drapes'],'del',[1,'Low, up to 110 °C, on the dull side only']],
+ ['chiffon','Chiffon','',['gowns'],[['Polyester',S],['Silk',N]],'A very light, sheer, floaty fabric used for gown layers and sleeves.',['Sheer and very light','Soft, floaty drape','Slightly rough to the touch'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['tulle','Tulle','',['gowns'],[['Nylon',S],['Polyester',S]],'A light net with tiny six-sided holes. Used for skirts, veils and gown volume.',['Open net of tiny holes','Light; can be stiff or soft','No woven threads'],'syn',[0,'Do not iron. Use steam from a distance']],
+ ['lace','Lace','',['gowns'],[['Cotton',N],['Nylon',S],['Polyester',S]],'An open fabric with patterns of holes, often floral. Used for overlays and trims.',['Open floral or patterned holes','Raised design areas','See-through between motifs'],'del',[1,'Low, up to 110 °C, face down on a towel']],
+ ['taffeta','Taffeta','',['gowns'],[['Polyester',S],['Silk',N]],'A crisp, smooth fabric that rustles when it moves. Often has a two-tone shimmer.',['Rustles when moved','Two-tone shimmer','Fine crosswise ribs'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['sinamay','Sinamay','',['filipiniana'],[['Abacá',N]],'An open, stiff weave made from abacá fiber. Used for Filipiniana pieces, hats and accents.',['Open, gauzy weave with gaps','Stiff and slightly scratchy','Natural, uneven fibers'],'del',[1,'Low, up to 110 °C, with a press cloth']],
+ ['inabel','Inabel','Abel Iloko',['filipiniana'],[['Cotton, handwoven',N]],'A handwoven cotton from Ilocos and La Union, known for bold geometric patterns.',['Woven-in geometric patterns','Thick, sturdy cotton','Slightly uneven handwoven edges'],'cot',[2,'Medium, up to 150 °C, on the reverse side']],
+ ['tnalak',"T'nalak",'',['filipiniana'],[['Abacá, handwoven',N]],"A handwoven abacá cloth of the T'boli people, tie-dyed in red, black and natural.",['Red, black and cream patterns','Stiff, glossy abacá','Patterns from tie-dyed threads'],'del',[1,'Avoid ironing. Press lightly through a cloth if needed']],
+].map(a=>({id:a[0],name:a[1],aka:a[2],cats:a[3],fibers:a[4].map(x=>({f:x[0],t:x[1]})),desc:a[5],feats:a[6],prof:a[7],iron:a[8]}));
+const FB=Object.fromEntries(F.map(f=>[f.id,f]));
+const CARE={
+ del:{washing:['Hand wash only, in cool water (below 30 °C).','Add a few drops of mild, pH-neutral soap.','Swish gently for 2–3 minutes. Do not rub, twist or wring.','Rinse twice in clean, cool water.'],
+      drying:['Roll the garment in a clean towel and press to remove water.','Hang on a padded hanger or lay flat, in the shade.','Keep out of direct sun. Sunlight yellows natural fibers.'],
+      ironing:['Iron while the fabric is still slightly damp.','Iron on the reverse side, with a thin cotton press cloth on top.','Press and lift. Do not slide the iron over embroidery.'],
+      storage:['Store only when clean and fully dry.','Wrap in acid-free tissue or a clean cotton cloth.','Hang on a padded hanger or roll it. Avoid sharp folds.','Keep away from damp. Add silica gel packs.']},
+ syn:{washing:['Turn the garment inside out.','Hand wash, or machine wash on gentle inside a mesh bag.','Use cold water and mild detergent. No bleach.'],
+      drying:['Hang to dry in the shade. Synthetics dry fast.','Do not tumble dry on high heat; it can melt or shine the fibers.','Smooth the garment by hand while damp.'],
+      ironing:['Iron on the reverse side only.','Use a press cloth so the fabric does not get shiny marks.','Keep the iron moving. High heat can melt synthetic fibers.'],
+      storage:['Hang on a wide or padded hanger.','Cover with a breathable cotton garment bag, not plastic.','Leave space in the closet so it does not crease.']},
+ cot:{washing:['Wash with similar colours, gentle cycle, 30–40 °C.','For handwoven pieces, hand wash the first few times in case colours run.','Use mild detergent. Avoid bleach on coloured fabric.'],
+      drying:['Line dry in the shade.','Take it down while still slightly damp. It irons more easily.','Do not over-dry in a machine; it shrinks.'],
+      ironing:['Iron while slightly damp, or use steam.','Iron dark or patterned fabric on the reverse side.','Hang right after ironing.'],
+      storage:['Hang shirts on shaped hangers.','Fold linen and handwoven cloth loosely and refold on new lines now and then.','Store in a dry, airy place.']},
+ wool:{washing:['Dry cleaning is safest for tailored suits.','To hand wash, use cold water and a wool soap. Do not soak long.','Never wring or rub; wool shrinks and felts.'],
+      drying:['Lay flat on a towel, away from heat and sun.','Reshape while damp.','Brush lightly with a clothes brush once dry.'],
+      ironing:['Use steam and a damp press cloth.','Press and lift. Do not slide.','Let it cool on the hanger before wearing.'],
+      storage:['Hang jackets on wide, shaped hangers.','Rest a suit for a day between wears.','Store with cedar blocks in a breathable bag to keep moths away.']}
+};
+const STAINS={
+ food:{n:'Food & oil',i:'restaurant',s:['Blot (do not rub) with a clean, dry cloth.','For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.','Dab with cool water and one drop of mild soap.','Rinse with cool water and air dry.']},
+ sweat:{n:'Sweat',i:'water_drop',s:['Mix 1 tablespoon of white vinegar in 1 litre of cool water.','Soak the area for 15 minutes.','Rinse well in clean, cool water.','Do not use hot water. Heat sets the stain.']},
+ makeup:{n:'Make-up',i:'brush',s:['Scrape off any extra with a blunt edge.','Dab with mild dish soap on a cotton swab, from the outside in.','Rinse with cool water.']},
+ ink:{n:'Ink',i:'ink_pen',s:['Test on a hidden seam first.','Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.','Repeat until no more ink lifts, then rinse.']}
+};
+const SECS=[['washing','Washing','local_laundry_service'],['drying','Drying','air'],['ironing','Ironing','iron'],['stain','Stain removal','water_drop'],['storage','Storage','inventory_2']];
+const TIPS=[['wb_sunny','Use good natural light'],['flash_off','Avoid flash glare'],['crop_free','Fill the frame with flat fabric'],['straighten','Hold the phone 10–15 cm away'],['center_focus_strong','Keep the photo in focus'],['layers','Use a single layer of fabric']];
+const RESULT={A:{top:'satin',others:[['taffeta','Possible match'],['chiffon','Not sure']]},B:{opts:[['pina','pos'],['pinaseda','pos'],['jusi','no']]}};
+const INIT_HIST=()=>[
+ {id:'h3',fab:'satin',conf:'high',when:'Today, 9:12 AM',src:'Camera'},
+ {id:'h2',fab:'inabel',conf:'high',when:'Yesterday, 4:40 PM',src:'Camera'},
+ {id:'h1',fab:'pinaseda',conf:'pos',when:'14 Nov, 10:05 AM',src:'Gallery'}];
+
+/* =================== STATE =================== */
+const st={theme:'system',res:'A',ts:1,dev:'360x800',offline:false,perm:'unknown',user:null,onboarded:false,
+ hist:INIT_HIST(),histHidden:false,photo:{tx:'satin',src:'camera'},care:'satin',stain:'food',fab:'pina',cat:'barong',hid:'h3',
+ obStep:0,authMode:'login',authErr:false,cur:'S01',stack:[],q:'',lastChosen:null,stainSel:{}};
+const $=s=>document.querySelector(s), app=$('#app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let timers=[];const later=(f,ms)=>timers.push(setTimeout(f,ms));const clearT=()=>{timers.forEach(clearTimeout);timers=[]};
+
+/* =================== SCREEN REGISTRY =================== */
+const SCREENS=[
+ ['S01','Splash'],['S02','Onboarding 1 · Scan'],['S03','Onboarding 2 · Care'],['S04','Onboarding 3 · History'],['S05','Guest / Log in / Sign up'],
+ ['S06','Home'],['S07','Camera permission'],['S07-denied','Permission denied'],['S08','Camera'],['S08-gallery','Photo picker'],['S09','Review photo'],['S09-error','Photo can\'t open'],
+ ['S10','Analyzing'],['S11','Result A · High match'],['S11-other','A · Other matches sheet'],['S12','Result B · Unsure'],['S13','Result C · Can\'t identify'],
+ ['S14','Fiber hint (in A/B)'],['S15','Care guide'],['S15-sources','Care · Sources sheet'],['S16','Browse'],['S17','Category list'],['S18','Fabric detail'],
+ ['S19','History'],['S19-empty','History · empty'],['S20','History item'],['S20-delete','Delete confirm'],
+ ['S21','Log in'],['S21-signup','Sign up'],['S21-forgot','Forgot password'],['S21-error','Log in · error'],['S22','Import guest scans'],
+ ['S23','Profile & settings'],['S24','Help & photo tips'],['S25','About & privacy'],['S26','Search (Could)']];
+
+/* =================== HELPERS =================== */
+const ic=(n,cls='')=>`<span class="ms ${cls}" aria-hidden="true">${n}</span>`;
+const sbar=(dark)=>`<div class="sbar${dark?' onDark':''}" aria-hidden="true"><span>9:41</span><span class="row" style="gap:4px">${ic(st.offline?'airplanemode_active':'signal_cellular_alt')}${ic('battery_5_bar')}</span></div>`;
+const bar=(title,{back=true,actions='',big=false}={})=>`<div class="bar">${back?`<button class="ib" data-act="back" aria-label="Back">${ic('arrow_back')}</button>`:'<span style="width:12px"></span>'}<div class="ttl ${big?'hS':'tL'}">${title}</div>${actions}</div>`;
+const sample=(t='Sample content: to be written by researchers')=>`<span class="sample">${ic('edit_note')}${t}</span>`;
+const fiberLabel=f=>f.fibers.map((x,i)=>i?x.f.toLowerCase():x.f).join(' or ');
+const CONF={high:['High match','verified','c-high',3],pos:['Possible match','help','c-pos',2],no:['Not sure','report','c-no',1]};
+const meter=k=>{const c=CONF[k];return `<div class="meter" style="--c:var(--${{high:'confHigh',pos:'confPos',no:'confNo'}[k]})" role="img" aria-label="${c[0]}"><span class="conf ${c[2]}">${ic(c[1],'fill')}${c[0]}</span><span class="segs" aria-hidden="true">${[1,2,3].map(i=>`<i class="${i<=c[3]?'on':''}"></i>`).join('')}</span></div>`};
+const fiberHint=f=>f.fibers.length>1?`<div class="banner b-fiber" role="note">${ic('label')}<div class="stack" style="gap:6px"><div class="tS">Check the garment label to confirm fiber.</div><div class="bM">${esc(f.name)} can be made of ${f.fibers.map(x=>`<b>${esc(x.f.toLowerCase())}</b>`).join(' or ')}. A photo can't always tell them apart.</div></div></div>`:'';
+const fiberChips=f=>`<div class="chips">${f.fibers.map(x=>`<span class="chip">${ic(x.t===S?'science':x.t===B?'join':'eco')}${esc(x.f)} · ${x.t}</span>`).join('')}</div>`;
+const catTags=f=>`<div class="chips">${f.cats.map(c=>`<span class="chip out">${ic(CATS[c].icon)}${CATS[c].name}</span>`).join('')}</div>`;
+const nav=active=>`<nav class="nav" aria-label="Main">
+ ${[['S06','home','Home'],['S16','grid_view','Browse'],null,['S19','history','History'],['S23','person','Profile']].map(t=>t?`<button data-tab="${t[0]}" ${active===t[0]?'aria-current="page"':''}><span class="pill">${ic(t[1])}</span>${t[2]}</button>`:`<button data-act="scan" aria-label="Scan fabric" style="min-height:64px"><span class="navScan">${ic('photo_camera','fill')}</span></button>`).join('')}</nav>`;
+const disclaimer=`<div class="banner b-info" role="note">${ic('info')}<div class="bM">This is general guidance. Always follow the garment's care label if it differs.</div></div>`;
+function logo(s=48){const p=[16,24,32],H='var(--onPrimary)',V='var(--secondaryContainer)',BG='var(--primary)';let g='';
+ p.forEach(y=>g+=`<line x1="11" y1="${y}" x2="37" y2="${y}" stroke="${H}"/>`);p.forEach(x=>g+=`<line x1="${x}" y1="11" x2="${x}" y2="37" stroke="${V}"/>`);
+ p.forEach((x,i)=>p.forEach((y,j)=>{const hOver=(i+j)%2===0;g+=hOver?`<line x1="${x-4.5}" y1="${y}" x2="${x+4.5}" y2="${y}" stroke="${BG}" stroke-width="7.5" stroke-linecap="butt"/><line x1="${x-4.5}" y1="${y}" x2="${x+4.5}" y2="${y}" stroke="${H}" stroke-linecap="butt"/>`:`<line x1="${x}" y1="${y-4.5}" x2="${x}" y2="${y+4.5}" stroke="${BG}" stroke-width="7.5" stroke-linecap="butt"/><line x1="${x}" y1="${y-4.5}" x2="${x}" y2="${y+4.5}" stroke="${V}" stroke-linecap="butt"/>`}));
+ return `<svg width="${s}" height="${s}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="15" fill="${BG}"/><g stroke-width="3.6" stroke-linecap="round">${g}</g></svg>`}
+const wordmark=(sz='dS')=>`<span class="${sz}">FabriSCAN<span style="color:var(--tertiary)">+</span></span>`;
+
+/* =================== SCREENS =================== */
+const R={};
+R.S01=()=>{later(()=>go(st.onboarded?'S06':'S02',{replace:true}),1700);
+ return `<div class="scr" style="background:var(--surface)">${sbar()}<button data-go="${st.onboarded?'S06':'S02'}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px" aria-label="Continue">
+ <div class="spring">${logo(88)}</div>${wordmark()}<p class="bL muted">Know your fabric. Care for it right.</p></button>
+ <p class="bS muted" style="text-align:center;padding:0 24px 28px">A thesis project · DMMSU Mid-La Union Campus</p></div>`};
+const OB=[
+ {t:'Scan any fabric',b:'Point your camera at a garment. FabriSCAN+ tells you the likely fabric and what it is made of.',il:()=>`<div class="blob"></div><div class="mini tx-pina"><div class="reticle" style="width:70%;top:50%"><i style="width:22px;height:22px;border-width:3px"></i><i style="width:22px;height:22px;border-width:3px"></i><i style="width:22px;height:22px;border-width:3px"></i><i style="width:22px;height:22px;border-width:3px"></i></div></div><span class="conf c-high" style="position:absolute;bottom:34px;right:calc(50% - 120px)">${ic('verified','fill')}High match</span>`},
+ {t:'Get a care guide',b:'Step-by-step washing, drying, ironing, stain removal and storage, with sources you can check.',il:()=>`<div class="blob"></div><div class="stack" style="position:relative;width:220px">${SECS.slice(0,4).map((s,i)=>`<div class="row card" style="padding:10px;gap:10px;transform:translateX(${i%2?14:-6}px)"><span class="careIcon" style="width:36px;height:36px">${ic(s[2])}</span><span class="tS">${s[1]}</span></div>`).join('')}</div>`},
+ {t:'Keep your history',b:'Every scan is saved on your phone. No account needed. Sign up later if you want it on other phones too.',il:()=>`<div class="blob"></div><div class="stack" style="position:relative;width:220px">${['satin','inabel','pinaseda'].map(x=>`<div class="row card" style="padding:8px;gap:10px;background:var(--scLowest)"><span class="tx-${x}" style="width:40px;height:40px;border-radius:12px"></span><span class="tS">${FB[x].name}</span></div>`).join('')}</div>`}];
+function onb(i){return ()=>{const o=OB[i];return `<div class="scr">${sbar()}<div class="bar" style="justify-content:flex-end"><button class="btn x" data-act="skip">Skip</button></div>
+ <div class="body" style="justify-content:center;gap:24px"><div class="illo">${o.il()}</div>
+ <div class="stack" style="gap:10px;text-align:center"><h1 class="hM">${o.t}</h1><p class="bL muted">${o.b}</p></div>
+ <div class="dotsnav" aria-label="Step ${i+1} of 3">${[0,1,2].map(j=>`<i class="${j===i?'on':''}"></i>`).join('')}</div></div>
+ <div style="padding:8px var(--gut) 28px;display:flex;gap:8px">${i>0?`<button class="btn o" data-go="S0${i+1}" data-replace="1">Back</button>`:''}<button class="btn f grow" ${i<2?`data-go="S0${i+3}" data-replace="1"`:'data-act="skip"'}>${i<2?'Next':'Get started'}</button></div></div>`}}
+R.S02=onb(0);R.S03=onb(1);R.S04=onb(2);
+R.S05=()=>`<div class="scr">${sbar()}<div class="body" style="justify-content:center;gap:28px;padding-top:24px">
+ <div class="stack" style="align-items:center;text-align:center;gap:14px">${logo(64)}<h1 class="hM">Start scanning</h1><p class="bL muted">No account needed. Your scans stay on this phone.</p></div>
+ <div class="stack" style="gap:10px"><button class="btn f block" data-act="guest">${ic('arrow_forward')}Continue as Guest</button>
+ <button class="btn o block" data-act="login">Log in</button><button class="btn x block" data-act="signup">Create a free account</button></div>
+ <p class="bS muted" style="text-align:center">An account only adds history on other phones. Everything else works without one.</p></div></div>`;
+R.S06=()=>{const h=st.hist.slice(0,6);return `<div class="scr">${sbar()}<div class="body navpad" style="gap:14px">
+ <div class="row" style="padding-top:6px"><div class="grow"><p class="bM muted">Good morning${st.user?', '+esc(st.user.split('@')[0]):''}</p><h1 class="hS">What fabric is this?</h1></div><button class="ib" data-go="S24" aria-label="Help and photo tips">${ic('help')}</button></div>
+ <div class="bento">
+  <button class="tile span scanTile" data-act="scan" aria-label="Scan fabric with camera"><span class="weave"></span><div class="stack" style="gap:4px;max-width:62%"><span class="hS" style="color:inherit">Scan fabric</span><span class="bM" style="opacity:.92">Point, snap, and get care steps</span></div><span class="fabBig">${ic('photo_camera','fill')}</span></button>
+  <button class="tile span" data-act="upload" style="flex-direction:row;align-items:center;min-height:60px">${ic('photo_library')}<span class="tM grow">Upload a photo</span>${ic('chevron_right')}</button>
+  ${Object.entries(CATS).map(([k,c])=>`<button class="tile catTile scrimtxt strong tx-${c.tx}" data-go="S17" data-cat="${k}"><span style="width:40px;height:40px;border-radius:12px;background:rgba(23,19,15,.6);display:grid;place-items:center;color:#fff">${ic(c.icon)}</span><span class="lab"><span class="tM">${c.name}</span><span class="bS" style="opacity:.95">${F.filter(f=>f.cats.includes(k)).length} fabrics</span></span></button>`).join('')}
+ </div>
+ <div class="row" style="justify-content:space-between"><h2 class="tM">Recent scans</h2>${h.length?`<button class="btn x" data-tab="S19">See all</button>`:''}</div>
+ ${h.length?`<div class="recent">${h.map(x=>`<button data-go="S20" data-hid="${x.id}"><span class="thumb tx-${x.fab}"></span><span class="tS">${FB[x.fab].name}</span><span class="bS muted">${x.when.split(',')[0]}</span></button>`).join('')}</div>`:`<p class="bM muted card" style="background:var(--scLow)">Your scans will show up here.</p>`}
+ <div class="banner b-eco">${ic('lightbulb')}<div class="stack" style="gap:4px"><span class="lM">Care tip of the day</span><span class="bM">Air your barong in the shade after wearing it. Sweat left in piña turns it yellow over time.</span>${sample('Sample tip')}</div></div>
+ </div>${nav('S06')}</div>`};
+R.S07=(v)=>v==='denied'?`<div class="scr">${sbar()}${bar('Camera')}<div class="body" style="gap:20px">
+ <div class="empty" style="padding-top:8px"><div class="ring">${ic('no_photography')}</div><h1 class="hS">Camera is turned off</h1><p class="bL muted">FabriSCAN+ needs the camera to scan fabric. You can turn it on in your phone's Settings.</p></div>
+ <div class="card stack" style="gap:8px"><span class="tS">How to turn it on</span><ol class="steps bM"><li><span>Open your phone's <b>Settings</b>.</span></li><li><span>Tap <b>Apps</b>, then <b>FabriSCAN+</b>.</span></li><li><span>Tap <b>Permissions</b>, then <b>Camera</b>, then <b>Allow</b>.</span></li></ol></div>
+ <div class="stack" style="gap:10px;margin-top:auto"><button class="btn f block" data-act="openSettings">${ic('settings')}Open phone Settings</button><button class="btn t block" data-act="upload">${ic('photo_library')}Upload a photo instead</button></div></div></div>`
+ :`<div class="scr">${sbar()}${bar('')}<div class="body" style="gap:20px">
+ <div class="empty"><div class="ring">${ic('photo_camera')}</div><h1 class="hS">Let FabriSCAN+ use your camera</h1><p class="bL muted">You'll take a close-up photo of the fabric so the app can find a match.</p></div>
+ <div class="list">${[['lock','Your photo stays on this phone.'],['cloud_off','Scanning works without internet.'],['photo_library','You can also upload a photo instead.']].map(x=>`<div class="li">${`<span class="le">${ic(x[0])}</span>`}<span class="bM">${x[1]}</span></div>`).join('')}</div>
+ <div class="stack" style="gap:10px;margin-top:auto"><button class="btn f block" data-act="allowCam">Allow camera</button><button class="btn x block" data-act="upload">Upload a photo instead</button></div></div></div>`;
+let tipI=0;const CAMTIPS=[['crop_free','Fill the frame with fabric'],['straighten','Move closer · 10–15 cm'],['flash_off','Avoid flash glare'],['center_focus_strong','Hold steady']];
+R.S08=(v)=>{const tx=st.res==='A'?'satin':st.res==='B'?'pina':'nonfabric';st.photo.tx=tx;
+ const rot=()=>{const el=document.getElementById('tipTxt');if(!el)return;tipI=(tipI+1)%CAMTIPS.length;el.innerHTML=`${ic(CAMTIPS[tipI][0])}${CAMTIPS[tipI][1]}`;later(rot,2200)};later(rot,2200);
+ if(v==='gallery')later(()=>picker(),50);
+ return `<div class="scr" style="background:#000"><div class="cam"><div class="feed tx-${tx}"></div>${sbar(true)}
+ <div class="camTop"><button class="ib" data-act="back" aria-label="Close camera" style="color:#fff">${ic('close')}</button><span class="glass lM" style="padding:8px 14px;border-radius:999px">Scan fabric</span><button class="ib" data-act="tips" aria-label="Photo tips" style="color:#fff">${ic('lightbulb')}</button></div>
+ <div class="reticle"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><div class="tipChip glass" role="status" aria-live="polite" id="tipTxt">${ic(CAMTIPS[0][0])}${CAMTIPS[0][1]}</div></div>
+ <div class="camTray glass"><button class="galThumb tx-inabel" data-act="upload" aria-label="Choose from gallery"></button><button class="shutter" data-act="shoot" aria-label="Take photo"><span></span></button><span class="lS" style="justify-self:end;text-align:right;opacity:.9">Flat fabric<br>Natural light</span></div></div></div>`};
+R.S09=(v)=>`<div class="scr">${sbar()}${bar('Check your photo')}<div class="body" style="gap:16px">
+ ${v==='error'?`<div style="border-radius:28px;aspect-ratio:1;width:100%;background:var(--scHigh);display:grid;place-items:center;color:var(--onSurfaceVariant)"><span class="ms" style="font-size:64px" aria-hidden="true">broken_image</span></div>`:`<div class="tx-${st.photo.tx}" style="border-radius:28px;aspect-ratio:1;width:100%"></div>`}
+ ${v==='error'?`<div class="banner b-err" role="alert">${ic('broken_image')}<div class="stack" style="gap:2px"><span class="tS">Couldn't open this photo. Try another.</span><span class="bM">The file may not be a photo, or it may be damaged.</span></div></div>`
+ :`<div class="stack" style="gap:6px"><h1 class="tL">Is the fabric clear and in focus?</h1><p class="bM muted">The fabric should fill most of the photo, in good light, with no flash glare.</p></div>`}
+ <div class="row" style="margin-top:auto;gap:10px">${v==='error'?`<button class="btn f block" data-act="upload">${ic('photo_library')}Choose another photo</button>`:`<button class="btn o" data-act="retake">${ic(st.photo.src==='camera'?'replay':'photo_library')}${st.photo.src==='camera'?'Retake':'Choose another'}</button><button class="btn f grow" data-act="use">${ic('check')}Use photo</button>`}</div></div></div>`;
+R.S10=()=>{const msgs=['Looking at the weave…','Comparing with 18 fabrics…','Almost done…'];let i=0;const tick=()=>{const el=document.getElementById('anaMsg');if(!el)return;i++;if(i<msgs.length){el.textContent=msgs[i];later(tick,750)}};later(tick,750);
+ later(()=>go(st.res==='A'?'S11':st.res==='B'?'S12':'S13',{replace:true}),2300);
+ return `<div class="scr">${sbar()}<div class="body" style="justify-content:center;gap:28px;padding-bottom:40px">
+ <div class="anaBox tx-${st.photo.tx}"><div class="threads"></div><div class="threads2"></div><div class="line"></div></div>
+ <div class="stack" style="text-align:center;gap:8px"><h1 class="hS" id="anaMsg" aria-live="polite">${msgs[0]}</h1><p class="bM muted">This takes a few seconds. No internet needed.</p></div>
+ <div class="prog" role="progressbar" aria-label="Identifying fabric"><i></i></div></div></div>`};
+R.S11=(v)=>{const f=FB[RESULT.A.top];if(v==='other')later(()=>otherSheet(),60);
+ return `<div class="scr">${sbar()}${bar('Result',{actions:`<button class="ib" data-act="tips" aria-label="Photo tips">${ic('lightbulb')}</button>`})}<div class="body" style="gap:14px">
+ <div class="spring stack" style="gap:14px">
+  <div class="heroImg scrimtxt tx-${f.id}"><div class="row" style="gap:10px"><span class="tx-${st.photo.tx}" style="width:52px;height:52px;border-radius:14px;border:2px solid #fff;flex:none" aria-label="Your photo" role="img"></span><span class="bS">Your photo<br>Scanned just now</span></div></div>
+  ${meter('high')}
+  <div class="stack" style="gap:6px"><h1 class="hL">${f.name}</h1><p class="bL muted">${fiberLabel(f)}</p>${catTags(f)}</div>
+  ${fiberHint(f)}
+  <div class="card stack" style="gap:10px;background:var(--scLow);border:1px solid var(--outlineVariant)"><span class="tS">Check these on your garment</span>${f.feats.map(x=>`<div class="feat">${ic('check_circle')}<span class="bM">${x}</span></div>`).join('')}</div>
+  <button class="btn f block" data-go="S15" data-care="${f.id}">${ic('menu_book')}View care guide</button>
+  <button class="btn x block" data-act="other">Not right? See other possible matches ${ic('expand_more')}</button>
+ </div>
+ <div class="row bS muted" style="justify-content:center;gap:6px">${ic('bookmark_added')}Saved to History · This is a likely match, not a lab test.</div></div></div>`};
+R.S12=()=>`<div class="scr">${sbar()}${bar('Result')}<div class="body" style="gap:14px">
+ <div class="spring stack" style="gap:6px">${meter('pos')}<h1 class="hM">This could be…</h1><p class="bM muted">These fabrics look alike. Compare the details with your garment and pick the one that matches.</p></div>
+ <div class="row" style="gap:10px"><span class="tx-${st.photo.tx}" style="width:48px;height:48px;border-radius:14px;flex:none" role="img" aria-label="Your photo"></span><span class="bS muted">Your photo. Tip: hold the garment up to the light. Piña is see-through and slightly stiff.</span></div>
+ ${RESULT.B.opts.map(([id,c],i)=>{const f=FB[id];return `<article class="optCard spring" style="animation-delay:${i*80}ms"><div class="img tx-${id}"></div><div class="in">
+  <div class="row" style="justify-content:space-between;align-items:flex-start;gap:8px"><div class="stack" style="gap:2px"><h2 class="hS">${f.name}</h2><span class="bM muted">${fiberLabel(f)}</span></div><span class="lS muted" style="padding-top:6px">Option ${i+1}</span></div>
+  ${meter(c)}
+  ${f.feats.map(x=>`<div class="feat">${ic('check_circle')}<span class="bM">${x}</span></div>`).join('')}
+  ${fiberHint(f)}
+  <button class="btn t block" data-act="pick" data-fab="${id}" data-conf="${c}">This one · View care guide</button></div></article>`}).join('')}
+ <div class="card stack" style="gap:8px;background:var(--scLow)"><span class="tS">None of these?</span><div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn o grow" data-act="retake">${ic('replay')}Retake</button><button class="btn o grow" data-tab="S16">${ic('grid_view')}Browse</button></div></div>
+ <p class="bS muted" style="text-align:center">The fabric you pick is saved to History.</p></div></div>`;
+R.S13=()=>`<div class="scr">${sbar()}${bar('Result')}<div class="body" style="gap:16px">
+ <div class="empty spring" style="padding:8px 0 0"><div class="ring">${ic('help_center')}</div>${meter('no')}<h1 class="hS">We couldn't identify this fabric</h1><p class="bM muted">The photo may be blurry or too dark, or it may not be a fabric FabriSCAN+ knows yet.</p></div>
+ <div class="card stack" style="gap:10px"><span class="tS">Try again with these tips</span>${TIPS.map(t=>`<div class="feat">${ic(t[0])}<span class="bM">${t[1]}</span></div>`).join('')}</div>
+ <div class="stack" style="gap:10px"><button class="btn f block" data-act="retake">${ic('photo_camera')}Retake photo</button><button class="btn t block" data-tab="S16">${ic('grid_view')}Browse fabrics</button></div>
+ <div class="banner b-info" role="note">${ic('info')}<span class="bM">FabriSCAN+ covers modern dress fabrics in Barong, Formal wear, Gowns and Filipiniana.</span></div>
+ <p class="bS muted" style="text-align:center">Nothing was saved to History.</p></div></div>`;
+R.S14=(v)=>R.S11(v);
+function careSteps(f,k){const p=CARE[f.prof];if(k==='stain')return null;return p[k]}
+R.S15=(v)=>{const f=FB[st.care];const sel=st.stainSel[f.id]||'food';if(v==='sources')later(()=>sourcesSheet(),60);
+ const sec=(k,t,i)=>{let inner='';
+  if(k==='stain'){inner=`<div class="stainChips" role="group" aria-label="Stain type">${Object.entries(STAINS).map(([sk,s])=>`<button data-act="stain" data-stain="${sk}" aria-pressed="${sk===sel}">${sk===sel?ic('check'):ic(s.i)}${s.n}</button>`).join('')}</div><ol class="steps bL" id="stainSteps">${STAINS[sel].s.map(x=>`<li><span>${x}</span></li>`).join('')}</ol>${f.prof==='del'?`<div class="banner b-fiber" style="padding:10px 12px">${ic('warning')}<span class="bM">On delicate or heritage fabric, test first on a hidden seam. If unsure, take it to a trusted dry cleaner.</span></div>`:''}`}
+  else{inner=(k==='ironing'?`<div class="temp" role="img" aria-label="Iron setting: ${f.iron[1]}"><span class="dots" aria-hidden="true">${[1,2,3].map(j=>`<i class="${j<=f.iron[0]?'on':''}"></i>`).join('')}</span><span class="tS">${f.iron[0]?f.iron[0]+' dot'+(f.iron[0]>1?'s':''):'No iron'} · <span style="font-weight:500">${f.iron[1]}</span></span></div>`:'')+`<ol class="steps bL">${careSteps(f,k).map(x=>`<li><span>${x}</span></li>`).join('')}</ol>`}
+  return `<section class="careSec" id="sec-${k}" data-open="true"><button class="careHead" data-act="toggleSec" aria-expanded="true"><span class="careIcon">${ic(i)}</span><span class="grow stack" style="gap:0"><span class="tM">${t}</span><span class="bS muted">${k==='stain'?'Pick a stain type':careSteps(f,k).length+' steps'}</span></span>${ic('expand_more','chev')}</button>
+   <div class="careBody">${inner}<button class="srcBtn" data-act="sources" data-sec="${t}">${ic('menu_book')}Sources (1)</button></div></section>`};
+ return `<div class="scr">${sbar()}${bar('Care guide',{actions:`<button class="ib" data-act="sources" aria-label="All sources">${ic('menu_book')}</button>`})}<div class="body" style="gap:12px">
+ <div class="heroImg scrimtxt tx-${f.id}" style="min-height:150px"><span class="lM" style="opacity:.92">CARE GUIDE</span><h1 class="hL" style="color:#fff">${f.name}</h1><span class="bM" style="opacity:.95">${fiberLabel(f)}</span></div>
+ ${disclaimer}
+ ${f.fibers.length>1?`<div class="banner b-fiber">${ic('label')}<span class="bM">Steps below are safe for the most delicate version (${esc(f.fibers.find(x=>x.t===N)?.f.toLowerCase()||f.fibers[0].f.toLowerCase())}). Check the garment label to confirm fiber.</span></div>`:''}
+ ${sample()}
+ <div class="jump" role="navigation" aria-label="Care sections">${SECS.map(s=>`<button class="chip out" data-act="jump" data-sec="${s[0]}">${ic(s[2])}${s[1].replace(' removal','')}</button>`).join('')}</div>
+ ${SECS.map(s=>sec(s[0],s[1],s[2])).join('')}
+ <div class="banner b-eco">${ic('eco')}<div class="stack" style="gap:2px"><span class="tS">Garment life extended</span><span class="bM">Caring for clothes the right way keeps them wearable for longer and out of landfills. (SDG 12)</span></div></div>
+ ${disclaimer}</div></div>`};
+R.S16=()=>`<div class="scr">${sbar()}<div class="body navpad" style="gap:14px">
+ <h1 class="hM" style="padding-top:10px">Browse fabrics</h1>
+ <button class="row card" data-go="S26" style="background:var(--scHigh);border-radius:999px;padding:0 16px;min-height:56px;text-align:left">${ic('search')}<span class="bL muted grow">Search fabrics, e.g. piña</span></button>
+ <div class="stack" style="gap:10px">${Object.entries(CATS).map(([k,c])=>`<button class="catCard scrimtxt strong tx-${c.tx}" data-go="S17" data-cat="${k}"><span class="row" style="justify-content:space-between;align-items:flex-end;gap:8px"><span class="stack" style="gap:2px"><span class="hS" style="color:#fff">${c.name}</span><span class="bM" style="opacity:.95">${F.filter(f=>f.cats.includes(k)).length} fabrics · ${c.desc}</span></span>${ic('arrow_forward')}</span></button>`).join('')}</div>
+ <p class="bS muted" style="text-align:center">Works without internet · ${F.length} fabrics in the catalog</p></div>${nav('S16')}</div>`;
+R.S17=()=>{const c=CATS[st.cat];const list=F.filter(f=>f.cats.includes(st.cat));return `<div class="scr">${sbar()}${bar(c.name,{big:true})}<div class="body navpad" style="gap:14px">
+ <p class="bM muted">${c.desc} ${list.length} fabrics.</p>
+ <div class="fgrid">${list.map(f=>`<button class="fcard scrimtxt strong tx-${f.id}" data-go="S18" data-fab="${f.id}"><span class="tM" style="font-family:var(--f-disp);font-size:calc(19px*var(--ts))">${f.name}</span><span class="bS" style="opacity:.95">${esc(fiberLabel(f))}</span>${f.cats.length>1?`<span class="lS" style="opacity:.9">Also in ${f.cats.filter(x=>x!==st.cat).map(x=>CATS[x].name).join(', ')}</span>`:''}</button>`).join('')}</div></div>${nav('S16')}</div>`};
+R.S18=()=>{const f=FB[st.fab];return `<div class="scr">${sbar()}${bar('')}<div class="body" style="gap:16px">
+ <div class="tx-${f.id}" style="border-radius:28px;height:200px"></div>
+ <div class="stack" style="gap:6px"><h1 class="hL">${f.name}</h1>${f.aka?`<p class="bM muted">Also called ${esc(f.aka)}</p>`:''}${catTags(f)}</div>
+ <p class="bL">${f.desc}</p>${sample('Sample description: researchers to confirm')}
+ <div class="stack" style="gap:8px"><h2 class="tM">What it's made of</h2>${fiberChips(f)}${fiberHint(f)}</div>
+ <div class="card stack" style="gap:10px;background:var(--scLow);border:1px solid var(--outlineVariant)"><h2 class="tM">How to recognize it</h2>${f.feats.map(x=>`<div class="feat">${ic('check_circle')}<span class="bM">${x}</span></div>`).join('')}</div>
+ <div class="stack" style="gap:8px"><h2 class="tM">Care guide</h2><div class="list">${SECS.map(s=>`<button class="li" data-go="S15" data-care="${f.id}" data-jump="${s[0]}" style="min-height:56px"><span class="le">${ic(s[2])}</span><span class="tS grow">${s[1]}</span>${ic('chevron_right')}</button>`).join('')}</div></div>
+ <button class="btn f block" data-go="S15" data-care="${f.id}">${ic('menu_book')}Open care guide</button></div></div>`};
+R.S19=(v)=>{const h=v==='empty'?[]:st.hist;return `<div class="scr">${sbar()}<div class="body navpad" style="gap:14px">
+ <div class="row" style="padding-top:10px"><h1 class="hM grow">History</h1>${h.length?`<span class="chip out">${ic(st.user?(st.offline?'cloud_off':'cloud_done'):'smartphone')}${st.user?(st.offline?'Waiting for internet':'Synced'):'On this phone'}</span>`:''}</div>
+ ${h.length?`${!st.user&&!st.histHidden?`<div class="banner b-info">${ic('devices')}<div class="stack grow" style="gap:6px"><span class="tS">Keep your scans on any phone</span><span class="bM">Create a free account to back up your history. Optional.</span><div class="row" style="gap:4px;margin-left:-12px;flex-wrap:wrap"><button class="btn x" data-act="signup">Create account</button><button class="btn x" data-act="hidePrompt" style="color:var(--onSurfaceVariant)">Not now</button></div></div></div>`:''}
+ <div class="list">${h.map(x=>{const f=FB[x.fab],c=CONF[x.conf];return `<div class="li" style="padding-right:4px"><button class="row grow" data-go="S20" data-hid="${x.id}" style="text-align:left;gap:14px;min-height:56px"><span class="lt tx-${f.id}"></span><span class="grow stack" style="gap:3px"><span class="tS">${f.name}</span><span class="bS muted">${x.when}</span><span class="conf ${c[2]}" style="align-self:flex-start;padding:2px 8px 2px 6px;font-size:calc(11.5px*var(--ts))">${ic(c[1],'fill')}${c[0]}</span></span></button><button class="ib" data-act="delAsk" data-hid="${x.id}" aria-label="Delete ${f.name} scan">${ic('delete')}</button></div>`}).join('')}</div>
+ <p class="bS muted" style="text-align:center">Newest first · Tap a scan to see its care guide</p>`
+ :`<div class="empty" style="padding-top:40px"><div class="ring">${ic('history')}</div><h2 class="hS">No scans yet</h2><p class="bM muted">Scan a fabric and it will be saved here, so you can find its care guide again.</p><button class="btn f" data-act="scan">${ic('photo_camera')}Scan fabric</button></div>`}
+ </div>${nav('S19')}</div>`};
+R.S20=(v)=>{const x=st.hist.find(h=>h.id===st.hid)||st.hist[0];if(!x)return R.S19('empty');const f=FB[x.fab];if(v==='delete')later(()=>delDialog(x.id),60);
+ return `<div class="scr">${sbar()}${bar('Saved scan',{actions:`<button class="ib" data-act="delAsk" data-hid="${x.id}" aria-label="Delete this scan">${ic('delete')}</button>`})}<div class="body" style="gap:14px">
+ <div class="tx-${f.id}" style="border-radius:28px;aspect-ratio:4/3"></div>
+ <div class="stack" style="gap:6px"><span class="bS muted">${x.when} · ${x.src}</span><h1 class="hL">${f.name}</h1><p class="bM muted">${fiberLabel(f)}</p>${meter(x.conf)}</div>
+ ${fiberHint(f)}
+ <button class="btn f block" data-go="S15" data-care="${f.id}">${ic('menu_book')}View care guide</button>
+ <button class="btn x block" data-go="S18" data-fab="${f.id}">About ${f.name}</button>
+ <p class="bS muted" style="text-align:center">${ic('cloud_off')} Opens without internet</p></div></div>`};
+R.S21=(v)=>{const mode=v==='signup'?'signup':v==='forgot'?'forgot':'login';const err=v==='error';
+ const off=st.offline?`<div class="banner b-off" role="status">${ic('wifi_off')}<span class="bM">You're offline. Connect to the internet to ${mode==='signup'?'create an account':mode==='forgot'?'reset your password':'log in'}. Everything else still works.</span></div>`:'';
+ if(mode==='forgot')return `<div class="scr">${sbar()}${bar('Reset password')}<div class="body" style="gap:16px">${off}<p class="bL muted">Enter your email. We'll send you a link to set a new password.</p>
+  <div class="field"><label for="fEmail">Email</label><div class="inp"><input id="fEmail" type="email" value="maria@example.com" autocomplete="email"></div></div>
+  <button class="btn f block" data-act="sendReset" ${st.offline?'disabled style="opacity:.45"':''}>Send reset link</button></div></div>`;
+ return `<div class="scr">${sbar()}${bar(mode==='signup'?'Create account':'Log in')}<div class="body" style="gap:16px">
+ <div class="seg" style="border-color:var(--outline)"><button data-go="S21" data-replace="1" aria-pressed="${mode==='login'}" style="min-height:48px">Log in</button><button data-go="S21-signup" data-replace="1" aria-pressed="${mode==='signup'}" style="min-height:48px">Sign up</button></div>
+ ${off}
+ ${err?`<div class="banner b-err" role="alert">${ic('error')}<span class="bM">That email and password don't match. Check them and try again.</span></div>`:''}
+ <div class="field ${err?'err':''}"><label for="aEmail">Email</label><div class="inp"><input id="aEmail" type="email" value="maria@example.com" autocomplete="email"></div></div>
+ <div class="field ${err?'err':''}"><label for="aPw">Password</label><div class="inp"><input id="aPw" type="password" value="hibla2026" autocomplete="${mode==='signup'?'new-password':'current-password'}"><button class="ib" data-act="pw" aria-label="Show password">${ic('visibility')}</button></div><span class="help">${err?ic('error')+' Wrong email or password':mode==='signup'?'At least 8 characters':''}</span></div>
+ ${mode==='login'?`<button class="btn x" data-go="S21-forgot" style="align-self:flex-start;margin-left:-12px">Forgot password?</button>`:`<p class="bS muted">Your email and scan history (small thumbnails only) are stored so you can see them on other phones. Full photos stay on this phone. You can delete your account anytime.</p>`}
+ <button class="btn f block" data-act="${mode==='signup'?'doSignup':'doLogin'}" ${st.offline?'disabled style="opacity:.45"':''}>${mode==='signup'?'Create account':'Log in'}</button>
+ <button class="btn x block" data-act="guest">Continue as Guest</button></div></div>`};
+R.S22=()=>{later(()=>importSheet(),60);return R.S06()};
+R.S23=()=>{const n=st.hist.length;return `<div class="scr">${sbar()}<div class="body navpad" style="gap:16px">
+ <h1 class="hM" style="padding-top:10px">Profile</h1>
+ ${st.user?`<div class="card stack" style="gap:10px"><div class="row"><span class="le" style="width:48px;height:48px;border-radius:50%;background:var(--primaryContainer);color:var(--onPrimaryContainer)">${ic('person','fill')}</span><div class="grow stack" style="gap:0"><span class="tM">${esc(st.user)}</span><span class="bS muted">Logged in</span></div></div>
+   <div class="row bM" style="gap:8px">${ic(st.offline?'cloud_off':'cloud_done')}<span>${st.offline?'Waiting for internet. Your scans are safe on this phone and will sync later.':'History synced · just now'}</span></div></div>`
+ :`<div class="card stack" style="gap:10px"><div class="row"><span class="le" style="width:48px;height:48px;border-radius:50%">${ic('person')}</span><div class="grow stack" style="gap:0"><span class="tM">Guest</span><span class="bS muted">${n} scans saved on this phone</span></div></div><p class="bM muted">Create a free account to keep your history on any phone. Optional.</p><div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn f grow" data-act="signup">Sign up</button><button class="btn o grow" data-act="login">Log in</button></div></div>`}
+ <div class="stack" style="gap:8px"><h2 class="lM muted">APPEARANCE</h2><div class="seg" role="group" aria-label="Theme">${['light','dark','system'].map(t=>`<button data-act="theme" data-th="${t}" aria-pressed="${st.theme===t}" style="min-height:48px">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div></div>
+ <div class="stack" style="gap:8px"><h2 class="lM muted">HELP & INFO</h2><div class="list">
+  <button class="li" data-go="S24"><span class="le">${ic('lightbulb')}</span><span class="tS grow">Help & photo tips</span>${ic('chevron_right')}</button>
+  <button class="li" data-go="S25"><span class="le">${ic('info')}</span><span class="tS grow">About & privacy</span>${ic('chevron_right')}</button>
+  <button class="li" data-act="survey"><span class="le">${ic('rate_review')}</span><span class="grow stack" style="gap:0"><span class="tS">Take the survey</span><span class="bS muted">Help the researchers · opens in your browser</span></span>${ic('open_in_new')}</button></div></div>
+ <div class="stack" style="gap:8px"><h2 class="lM muted">DATA</h2><div class="list">
+  <button class="li" data-act="clearAsk" style="color:var(--error)"><span class="le">${ic('delete_sweep')}</span><span class="tS grow">Clear all history</span></button>
+  ${st.user?`<button class="li" data-act="logout"><span class="le">${ic('logout')}</span><span class="tS grow">Log out</span></button><button class="li" data-act="delAcctAsk" style="color:var(--error)"><span class="le">${ic('person_remove')}</span><span class="tS grow">Delete account</span></button>`:''}</div></div>
+ <p class="bS muted" style="text-align:center">FabriSCAN+ 0.1.0 · Free, no ads, no in-app purchases</p></div>${nav('S23')}</div>`};
+R.S24=()=>`<div class="scr">${sbar()}${bar('Help & photo tips')}<div class="body" style="gap:16px">
+ <div class="stack" style="gap:8px"><h2 class="tM">For a good scan</h2><div class="list">${TIPS.map(t=>`<div class="li" style="min-height:60px"><span class="le">${ic(t[0])}</span><span class="bM">${t[1]}</span></div>`).join('')}</div></div>
+ ${[['How to scan a fabric',['On Home, tap <b>Scan fabric</b>.','Hold the phone 10–15 cm from a flat part of the garment.','Line up the fabric inside the frame and tap the round button.','Tap <b>Use photo</b>, or <b>Retake</b> if it is blurry.','Read the result, then tap <b>View care guide</b>.']],
+ ['How to browse without scanning',['Tap <b>Browse</b> in the bottom bar.','Pick a category, such as Barong.','Pick a fabric to see what it is made of and how to care for it.']],
+ ['How to use History',['Tap <b>History</b> in the bottom bar.','Tap a scan to open its result and care guide again.','Tap the bin icon to delete a scan.']]].map(([t,s])=>`<div class="card stack" style="gap:10px"><h2 class="tM">${t}</h2><ol class="steps bM">${s.map(x=>`<li><span>${x}</span></li>`).join('')}</ol></div>`).join('')}
+ <p class="bS muted">These steps match the FabriSCAN+ user's manual.</p></div></div>`;
+R.S25=()=>`<div class="scr">${sbar()}${bar('About & privacy')}<div class="body" style="gap:16px">
+ <div class="row" style="gap:14px">${logo(56)}<div class="stack" style="gap:0">${wordmark('hS')}<span class="bS muted">Version 0.1.0</span></div></div>
+ <div class="card stack" style="gap:8px"><span class="eyebrow">The study</span><p class="tS" style="font-family:var(--f-disp);font-size:calc(17px*var(--ts));font-weight:600">FabriSCAN+: Development of Textile Care Through Smart Mobile Application for Fabric Identification and Garment Maintenance</p>
+  <p class="bM muted">BS Textile and Fashion Technology · College of Technology · Don Mariano Marcos Memorial State University, Mid-La Union Campus, San Fernando, La Union · 2026</p>
+  <p class="bM"><b>Researchers:</b> 8 student researchers.</p>${sample('Researcher names: to be supplied')}</div>
+ <div class="banner b-eco">${ic('eco')}<div class="stack" style="gap:4px"><span class="tS">SDG 12 · Responsible consumption</span><span class="bM">Knowing your fabric helps you care for it right, so garments last longer and less clothing ends up as waste.</span></div></div>
+ <div class="card stack" style="gap:10px"><h2 class="tM">Your privacy</h2>
+  ${[['smartphone','Guests: your photos and history never leave this phone.'],['image','Full photos are used once to find a match, then discarded. Only a small thumbnail is kept.'],['cloud','With an account, your email and scan history (thumbnails only) are stored so you can sync. Nothing else.'],['block','No ads, no tracking, no location.'],['delete','You can clear your history or delete your account anytime in Profile.']].map(x=>`<div class="feat">${ic(x[0])}<span class="bM">${x[1]}</span></div>`).join('')}
+  <p class="bS muted">In line with the Data Privacy Act of 2012 (RA 10173).</p></div>
+ <div class="card stack" style="gap:6px"><h2 class="tM">Care information</h2><p class="bM muted">Care guides are written and checked by the researchers, with sources for every section. They are general guidance. Always follow the garment's care label if it differs.</p></div>
+ <div class="list"><div class="li" style="min-height:52px"><span class="bM grow">App</span><span class="bM muted" style="font-variant-numeric:tabular-nums">0.1.0 (prototype)</span></div><div class="li" style="min-height:52px"><span class="bM grow">Fabric scanner</span><span class="bM muted">demo · 18 fabrics</span></div><div class="li" style="min-height:52px"><span class="bM grow">Fabric content</span><span class="bM muted">0.1 sample</span></div></div>
+ <button class="btn f block" data-act="survey">${ic('rate_review')}Take the survey</button></div></div>`;
+R.S26=()=>`<div class="scr">${sbar()}<div class="bar"><button class="ib" data-act="back" aria-label="Back">${ic('arrow_back')}</button><div class="inp grow" style="border-radius:999px;border:0;margin-right:12px;background:var(--scHigh)">${ic('search')}<label for="q" class="sr" style="position:absolute;left:-9999px">Search fabrics</label><input id="q" placeholder="Search fabrics" value="${esc(st.q)}" style="padding-left:8px" autocomplete="off"></div></div>
+ <div class="body" style="gap:12px" id="qres">${searchRes()}</div></div>`;
+function searchRes(){const q=st.q.trim().toLowerCase();
+ if(q.length<2)return `<p class="bM muted">Type at least 2 letters. Try:</p><div class="chips">${['piña','satin','jusi','abacá','silk'].map(x=>`<button class="chip out" data-act="qset" data-q="${x}" style="min-height:48px">${x}</button>`).join('')}</div>`;
+ const n=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();const qq=n(q);
+ const r=F.filter(f=>n(f.name+' '+f.aka+' '+f.fibers.map(x=>x.f).join(' ')).includes(qq));
+ return r.length?`<div class="list">${r.map(f=>`<button class="li" data-go="S18" data-fab="${f.id}"><span class="lt tx-${f.id}"></span><span class="grow stack" style="gap:2px"><span class="tS">${f.name}</span><span class="bS muted">${f.aka?esc(f.aka)+' · ':''}${f.cats.map(c=>CATS[c].name).join(', ')}</span></span>${ic('chevron_right')}</button>`).join('')}</div>`
+ :`<div class="empty">${ic('search_off')}<p class="tM">No fabrics match "${esc(st.q)}"</p><p class="bM muted">Check the spelling, or browse by category.</p><button class="btn t" data-tab="S16">Browse fabrics</button></div>`}
+
+/* =================== OVERLAYS =================== */
+function overlay(html,{center=false,onClose}={}){closeOverlay();const o=document.createElement('div');o.className='ovl'+(center?' center':'');o.id='ovl';o.innerHTML=html;o.addEventListener('click',e=>{if(e.target===o){closeOverlay();onClose&&onClose()}});app.appendChild(o);const f=o.firstElementChild;if(f){f.setAttribute('tabindex','-1');f.style.outline='none';f.focus({preventScroll:true})}}
+function closeOverlay(){const o=document.getElementById('ovl');o&&o.remove()}
+const sheet=(title,inner)=>overlay(`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="handle"></div><div class="sb"><div class="row"><h2 class="tL grow">${title}</h2><button class="ib" data-act="close" aria-label="Close">${ic('close')}</button></div>${inner}</div></div>`);
+function dialog(title,body,acts){overlay(`<div class="dlg" role="alertdialog" aria-modal="true" aria-label="${esc(title)}"><h2 class="hS">${title}</h2><p class="bM muted">${body}</p><div class="acts">${acts}</div></div>`,{center:true})}
+function toast(t,icon='check_circle'){const old=app.querySelector('.toast');old&&old.remove();const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.innerHTML=ic(icon)+`<span>${t}</span>`;app.appendChild(d);setTimeout(()=>d.remove(),2600)}
+function otherSheet(){const f=FB[RESULT.A.top];sheet('Other possible matches',`<p class="bM muted">If ${f.name} doesn't look right, compare these. Tap one to see its care guide.</p>
+ ${RESULT.A.others.map(([id,c])=>{const g=FB[id],k=c==='Possible match'?'pos':'no';return `<button class="optCard" data-act="pick" data-fab="${id}" data-conf="${k}" style="flex-direction:row;text-align:left"><span class="tx-${id}" style="width:96px;flex:none"></span><span class="in grow" style="gap:6px"><span class="tM" style="font-family:var(--f-disp);font-size:calc(19px*var(--ts))">${g.name}</span>${meter(k)}<span class="bS muted">${g.feats[0]} · ${g.feats[1]}</span></span></button>`}).join('')}
+ <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn o grow" data-act="retake">${ic('replay')}Retake</button><button class="btn o grow" data-tab="S16">${ic('grid_view')}Browse all</button></div>`)}
+function sourcesSheet(sec){sheet(sec?`Sources · ${sec}`:'Sources',`${sample('Sample citations: researchers to add APA 7 references')}
+ ${(sec?[sec]:SECS.map(s=>s[1])).map(s=>`<div class="card stack" style="gap:6px;background:var(--sc)"><span class="lM muted">${s.toUpperCase()}</span><p class="bM">Author, A. A., &amp; Author, B. B. (Year). <i>Title of the book or article</i>. Publisher or Journal, volume(issue), pages. https://doi.org/…</p><span class="bS muted">Reviewed by: researcher name · date</span></div>`).join('')}
+ <p class="bS muted">Every care section in the final app has at least one source, checked by a researcher.</p>`)}
+function importSheet(){const n=st.hist.length;sheet(`Import your ${n} saved scans?`,`<p class="bL">You have ${n} scans saved on this phone as a guest. Add them to your account so they sync to any phone you log in to.</p>
+ <div class="list">${st.hist.slice(0,3).map(x=>`<div class="li" style="min-height:52px;padding-block:6px"><span class="lt tx-${x.fab}" style="width:36px;height:36px;border-radius:10px"></span><span class="tS grow">${FB[x.fab].name}</span><span class="bS muted">${x.when.split(',')[0]}</span></div>`).join('')}</div>
+ <p class="bS muted">Only small thumbnails are uploaded. Full photos stay on this phone. If you choose Not now, these scans stay on this phone only.</p>
+ <div class="stack" style="gap:8px;position:sticky;bottom:-28px;background:var(--scLow);padding:8px 0 4px"><button class="btn f block" data-act="importYes">Yes, import ${n} scans</button><button class="btn x block" data-act="importNo">Not now</button></div>`)}
+function delDialog(id){const x=st.hist.find(h=>h.id===id);if(!x)return;dialog('Delete this scan?',`${FB[x.fab].name} from ${x.when} will be removed from History${st.user?' on all your phones':''}. This can't be undone.`,`<button class="btn x" data-act="close">Cancel</button><button class="btn x d" data-act="delYes" data-hid="${id}">Delete</button>`)}
+function picker(){sheet('Choose a photo',`<p class="bS muted">Your phone's photo picker. FabriSCAN+ only sees the photo you choose.</p><div class="picker">${['satin','pina','inabel','linen','chiffon','tnalak','nonfabric','lace'].map(x=>`<button class="tx-${x}" data-act="pickPhoto" data-tx="${x}" aria-label="Photo"></button>`).join('')}<button class="bad" data-act="badPhoto" aria-label="Damaged file">${ic('broken_image')}<span>file.heic</span></button></div>`)}
+function photoTips(){sheet('Photo tips',`<div class="list">${TIPS.map(t=>`<div class="li" style="min-height:56px"><span class="le">${ic(t[0])}</span><span class="bM">${t[1]}</span></div>`).join('')}</div><button class="btn f block" data-act="close">Got it</button>`)}
+
+/* =================== ROUTER =================== */
+function parse(id){const [b,...r]=(id||'').split('-');return {base:b,v:r.join('-')||''}}
+function render(id){clearT();closeOverlay();const {base,v}=parse(id);const fn=R[base]||R.S06;st.cur=R[base]?id:'S06';
+ app.innerHTML=fn(v);try{history.replaceState(null,'','#'+st.cur)}catch(e){}
+ if(v==='') {} if(base==='S19'&&v==='empty'){}
+ if(base==='S26'){const q=document.getElementById('q');q&&q.focus({preventScroll:true});q&&q.addEventListener('input',e=>{st.q=e.target.value;document.getElementById('qres').innerHTML=searchRes()})}
+ syncIndex();}
+function go(id,{replace=false,reset=false}={}){if(reset)st.stack=[];else if(!replace&&st.cur&&st.cur!==id)st.stack.push(st.cur);render(id)}
+function back(){const p=st.stack.pop();render(p||'S06')}
+function startScan(){if(st.perm==='granted')go('S08');else if(st.perm==='denied')go('S07-denied');else go('S07')}
+function save(fab,conf){const id='h'+Date.now();st.hist.unshift({id,fab,conf,when:'Today, just now',src:st.photo.src==='camera'?'Camera':'Gallery'});st.hid=id;return id}
+
+/* =================== EVENTS (app) =================== */
+app.addEventListener('click',e=>{const t=e.target.closest('[data-go],[data-act],[data-tab]');if(!t||t.disabled)return;const d=t.dataset;
+ if(d.cat)st.cat=d.cat;if(d.fab&&!d.act)st.fab=d.fab;if(d.care)st.care=d.care;if(d.hid&&!d.act)st.hid=d.hid;
+ if(d.tab){go(d.tab,{reset:true});if(d.tab!=='S06')st.stack=['S06'];return}
+ if(d.go){go(d.go,{replace:!!d.replace});if(d.jump)setTimeout(()=>jumpTo(d.jump),50);return}
+ const a=d.act;
+ const acts={
+  back:()=>back(),close:()=>closeOverlay(),
+  skip:()=>{st.onboarded=true;go('S05',{replace:true})},
+  guest:()=>{st.onboarded=true;go('S06',{reset:true})},
+  login:()=>go('S21'),signup:()=>go('S21-signup'),
+  scan:()=>startScan(),
+  upload:()=>{st.photo.src='gallery';picker()},
+  allowCam:()=>overlay(`<div class="sysdlg" role="alertdialog" aria-label="System permission"><div style="text-align:center">${ic('photo_camera')}</div><p style="margin:0;text-align:center;font-size:16px">Allow <b>FabriSCAN+</b> to take pictures and record video?</p><button data-act="permYes">While using the app</button><button data-act="permOnce">Only this time</button><button data-act="permNo">Don't allow</button></div>`,{center:true}),
+  permYes:()=>{st.perm='granted';syncPanel();go('S08',{replace:true})},permOnce:()=>{go('S08',{replace:true})},
+  permNo:()=>{st.perm='denied';syncPanel();go('S07-denied',{replace:true})},
+  openSettings:()=>{st.perm='granted';syncPanel();go('S08',{replace:true});toast('Camera allowed in Settings')},
+  tips:()=>photoTips(),
+  shoot:()=>{try{navigator.vibrate&&navigator.vibrate(18)}catch(_){}st.photo.src='camera';const fl=document.createElement('div');fl.className='flash';app.appendChild(fl);setTimeout(()=>go('S09'),260)},
+  pickPhoto:()=>{st.photo={tx:d.tx,src:'gallery'};closeOverlay();go('S09')},
+  badPhoto:()=>{closeOverlay();st.photo.src='gallery';go('S09-error')},
+  retake:()=>{closeOverlay();if(st.photo.src==='gallery'){picker()}else{go(st.perm==='granted'?'S08':'S08',{replace:false})}},
+  use:()=>{if(st.res==='A'){save(RESULT.A.top,'high')}st.stack=st.stack.filter(x=>!/^S0[789]/.test(x));go('S10',{replace:true})},
+  other:()=>otherSheet(),
+  pick:()=>{closeOverlay();const k=d.conf||'pos';if(st.cur.startsWith('S11')&&st.hist[0]&&st.hist[0].when==='Today, just now'){st.hist[0].fab=d.fab;st.hist[0].conf=k}else save(d.fab,k);st.care=d.fab;go('S15');toast(`Saved ${FB[d.fab].name} to History`,'bookmark_added')},
+  stain:()=>{const f=FB[st.care];st.stainSel[f.id]=d.stain;t.parentElement.querySelectorAll('button').forEach(b=>{const on=b.dataset.stain===d.stain;b.setAttribute('aria-pressed',on);b.innerHTML=(on?ic('check'):ic(STAINS[b.dataset.stain].i))+STAINS[b.dataset.stain].n});document.getElementById('stainSteps').innerHTML=STAINS[d.stain].s.map(x=>`<li><span>${x}</span></li>`).join('')},
+  toggleSec:()=>{const s=t.closest('.careSec');const o=s.dataset.open!=='false';s.dataset.open=!o;t.setAttribute('aria-expanded',!o)},
+  jump:()=>jumpTo(d.sec),
+  sources:()=>sourcesSheet(d.sec),
+  delAsk:()=>delDialog(d.hid),
+  delYes:()=>{st.hist=st.hist.filter(h=>h.id!==d.hid);closeOverlay();if(st.cur.startsWith('S20')){st.stack=['S06'];render('S19')}else render(st.cur);toast('Scan deleted','delete')},
+  hidePrompt:()=>{st.histHidden=true;render(st.cur)},
+  clearAsk:()=>dialog('Clear all history?',`All ${st.hist.length} scans will be removed${st.user?' from this phone and your account':' from this phone'}. This can't be undone.`,`<button class="btn x" data-act="close">Cancel</button><button class="btn x d" data-act="clearYes">Clear all</button>`),
+  clearYes:()=>{st.hist=[];closeOverlay();render(st.cur);toast('History cleared','delete_sweep')},
+  theme:()=>{setTheme(d.th);render(st.cur)},
+  survey:()=>toast(st.offline?'You\'re offline. Connect to open the survey.':'Opens the survey form in your browser',st.offline?'wifi_off':'open_in_new'),
+  pw:()=>{const i=document.getElementById('aPw');i.type=i.type==='password'?'text':'password';t.innerHTML=ic(i.type==='password'?'visibility':'visibility_off');t.setAttribute('aria-label',i.type==='password'?'Show password':'Hide password')},
+  doLogin:()=>{const pw=document.getElementById('aPw').value;if(pw!=='hibla2026'){go('S21-error',{replace:true});return}st.user=document.getElementById('aEmail').value;st.onboarded=true;go('S06',{reset:true});toast('Logged in. History synced.','cloud_done')},
+  doSignup:()=>{st.user=document.getElementById('aEmail').value;st.onboarded=true;go('S06',{reset:true});if(st.hist.length)setTimeout(importSheet,250);else toast('Account created','check_circle')},
+  sendReset:()=>{back();toast('Reset link sent. Check your email.','mail')},
+  importYes:()=>{closeOverlay();toast(`${st.hist.length} scans added to your account`,'cloud_done')},
+  importNo:()=>{closeOverlay();toast('Your scans stay on this phone','smartphone')},
+  logout:()=>{st.user=null;render('S23');toast('Logged out. You\'re now a guest.','logout')},
+  delAcctAsk:()=>dialog('Delete your account?','Your login and synced history will be deleted from our servers. Scans on this phone stay unless you clear them. This can\'t be undone.',`<button class="btn x" data-act="close">Cancel</button><button class="btn x d" data-act="delAcct" ${st.offline?'disabled style="opacity:.45"':''}>Delete account</button>`),
+  delAcct:()=>{st.user=null;closeOverlay();render('S23');toast('Account deleted','person_remove')},
+  qset:()=>{st.q=d.q;const q=document.getElementById('q');q.value=d.q;document.getElementById('qres').innerHTML=searchRes()}
+ };
+ acts[a]&&acts[a]();
+});
+function jumpTo(k){const el=document.getElementById('sec-'+k);if(el){el.dataset.open='true';el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}
+
+/* =================== CONSOLE =================== */
+const root=document.documentElement;
+function setTheme(t){st.theme=t;if(t==='system')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);try{localStorage.setItem('fs-theme',t)}catch(_){}syncPanel()}
+function setDev(v){st.dev=v;const [w,h]=v.split('x').map(Number);const dv=$('#device');dv.style.setProperty('--dw',w);dv.style.setProperty('--dh',h);$('#cap').textContent=`${v==='390x844'?'iPhone · ':'Android · '}${w}×${h} dp${st.ts>1?' · text 1.3×':''}`;fit();syncPanel()}
+function fit(){const dv=$('#device'),wrap=$('#devwrap');if(innerWidth<=760){dv.style.transform='';return}const [w,h]=st.dev.split('x').map(Number);const W=w+24,H=h+24;const s=Math.min(1,(innerHeight-56)/H,($('#stage').clientWidth-40)/W);dv.style.transform=`scale(${s})`;wrap.style.width=W*s+'px';wrap.style.height=H*s+'px'}
+addEventListener('resize',fit);
+function syncPanel(){
+ document.querySelectorAll('#segRes button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.res===st.res));
+ document.querySelectorAll('#segTheme button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.th===st.theme));
+ document.querySelectorAll('#segDev button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.dev===st.dev));
+ document.querySelectorAll('#segPerm button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.perm===st.perm));
+ $('#swText').setAttribute('aria-checked',st.ts>1);$('#swOff').setAttribute('aria-checked',st.offline);}
+function syncIndex(){document.querySelectorAll('#idx button').forEach(b=>b.setAttribute('aria-current',b.dataset.s===st.cur))}
+$('#idx').innerHTML=SCREENS.map(([id,n])=>`<li><button data-s="${id}"><code>${id}</code><span>${n}</span></button></li>`).join('');
+$('#idx').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const id=b.dataset.s;
+ if(['S06','S16','S19','S23'].includes(id)||id.startsWith('S19'))st.onboarded=true;
+ if(id==='S08'||id==='S08-gallery')st.perm='granted';
+ if(id.startsWith('S20'))st.hid=(st.hist[0]||{}).id;
+ if(id==='S14')st.res='A';
+ if(id==='S22'&&!st.user){st.user='maria@example.com'}
+ if(id==='S09')st.photo.src='camera';
+ syncPanel();go(id,{reset:true});if(!['S06','S01'].includes(id))st.stack=['S06'];closePanel()});
+$('#segRes').addEventListener('click',e=>{const b=e.target.closest('button');if(b){st.res=b.dataset.res;syncPanel()}});
+$('#segTheme').addEventListener('click',e=>{const b=e.target.closest('button');if(b){setTheme(b.dataset.th);if(st.cur.startsWith('S23'))render(st.cur)}});
+$('#segDev').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setDev(b.dataset.dev)});
+$('#segPerm').addEventListener('click',e=>{const b=e.target.closest('button');if(b){st.perm=b.dataset.perm;syncPanel()}});
+$('#swText').addEventListener('click',()=>{st.ts=st.ts>1?1:1.3;app.style.setProperty('--ts',st.ts);setDev(st.dev)});
+$('#swOff').addEventListener('click',()=>{st.offline=!st.offline;syncPanel();render(st.cur)});
+$('#reset').addEventListener('click',()=>{Object.assign(st,{res:'A',perm:'unknown',user:null,onboarded:false,hist:INIT_HIST(),histHidden:false,offline:false,stack:[],q:'',stainSel:{}});syncPanel();go('S01',{reset:true});closePanel()});
+document.querySelector('.demo').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.demo;closePanel();
+ const P={first:()=>{st.onboarded=false;go('S01',{reset:true})},
+  scanA:()=>{st.res='A';st.onboarded=true;go('S06',{reset:true})},scanB:()=>{st.res='B';st.onboarded=true;go('S06',{reset:true})},scanC:()=>{st.res='C';st.onboarded=true;go('S06',{reset:true})},
+  browse:()=>{st.onboarded=true;go('S16',{reset:true});st.stack=['S06']},history:()=>{st.onboarded=true;if(!st.hist.length)st.hist=INIT_HIST();go('S19',{reset:true});st.stack=['S06']},
+  signup:()=>{st.onboarded=true;st.user=null;if(!st.hist.length)st.hist=INIT_HIST();go('S23',{reset:true});st.stack=['S06']}};
+ P[k]();syncPanel()});
+const panel=$('#panel');let scrimEl=null;
+function closePanel(){panel.classList.remove('open');scrimEl&&scrimEl.remove();scrimEl=null}
+$('#menuBtn').addEventListener('click',()=>{panel.classList.add('open');scrimEl=document.createElement('div');scrimEl.className='scrim50';scrimEl.onclick=closePanel;document.body.appendChild(scrimEl)});
+addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(h&&h!==st.cur&&R[parse(h).base]){st.onboarded=true;go(h)}});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeOverlay()});
+
+/* boot */
+try{const t=localStorage.getItem('fs-theme');if(t)setTheme(t)}catch(_){}
+setDev('360x800');syncPanel();
+(function(){const h=location.hash.slice(1);if(h&&R[parse(h).base]&&h!=='S01'){st.onboarded=true;st.stack=['S06'];render(h)}else render('S01')})();
+</script>

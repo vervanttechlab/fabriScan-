@@ -1,0 +1,152 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FabriSCAN+ Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;700;800&family=Lexend:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=block">
+<style>
+/* Layout: a review sheet. Each direction is one band: story + tokens on the left, light & dark Home mocks on the right. */
+:root{
+  --bg:#F6F5F2; --panel:#FFFFFF; --ink:#1D1C1A; --muted:#5C5954; --line:#DEDBD5; --accent:#2E3F8F;
+  --f-ui:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121211;--panel:#1C1B1A;--ink:#EEECE8;--muted:#B3AFA8;--line:#34322F;--accent:#B7C2FF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--panel:#1C1B1A;--ink:#EEECE8;--muted:#B3AFA8;--line:#34322F;--accent:#B7C2FF;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-ui);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:40px}
+header h1{font-size:clamp(26px,4vw,36px);margin:0 0 6px;text-wrap:balance;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted);max-width:68ch}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dir{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px}
+@media (max-width:980px){.dir{grid-template-columns:1fr;padding:20px}}
+.dir h2{margin:4px 0 6px;font-size:28px;letter-spacing:-.01em}
+.dir .lede{margin:0 0 18px;color:var(--muted);max-width:60ch}
+.spec{display:grid;gap:18px}
+.spec h3{margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.chip{border-radius:12px;padding:10px;min-height:66px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;border:1px solid rgba(127,127,127,.25)}
+.chip b{font-weight:600}
+.chip span{font-variant-numeric:tabular-nums;opacity:.95}
+.typespec{display:grid;gap:4px}
+.shapes{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.shapes div{width:52px;height:52px;background:var(--line);display:grid;place-items:center;font-size:11px;color:var(--ink)}
+.phones{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.phonecap{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+.notes{font-size:13px;color:var(--muted);margin:0;padding-left:18px}
+/* phone mock: every colour comes from the scoped --m-* tokens set per instance */
+.ph{width:300px;height:620px;border-radius:40px;padding:10px;background:#0b0b0b;box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.scr{height:100%;border-radius:31px;overflow:hidden;background:var(--m-bg);color:var(--m-on);position:relative;font-family:var(--m-body)}
+.sb{height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:11px;font-weight:600}
+.ms{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:22px;line-height:1;display:inline-block;-webkit-font-feature-settings:"liga";font-feature-settings:"liga";font-variation-settings:"FILL" 0}
+.hd{padding:6px 18px 10px}
+.hd small{color:var(--m-var);font-size:12px}
+.hd h4{margin:2px 0 0;font-family:var(--m-disp);font-size:24px;line-height:1.15;font-weight:var(--m-dw);letter-spacing:var(--m-dls)}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px}
+.t{border-radius:var(--m-r);background:var(--m-sc);padding:12px;min-height:64px;display:flex;flex-direction:column;justify-content:space-between;font-size:13px;font-weight:600}
+.t .ms{font-size:22px}
+.scan{grid-column:1/-1;min-height:118px;background:var(--m-pri);color:var(--m-onpri);position:relative;overflow:hidden}
+.scan .big{font-family:var(--m-disp);font-size:22px;font-weight:var(--m-dw)}
+.scan small{font-weight:500;opacity:.92}
+.scan .fab{position:absolute;right:14px;bottom:14px;width:56px;height:56px;border-radius:var(--m-fabr);background:var(--m-pc);color:var(--m-onpc);display:grid;place-items:center}
+.cat{min-height:58px;color:var(--m-catOn,var(--m-on))}
+.cat em{font-style:normal;font-weight:500;font-size:11px;opacity:.9}
+.strip{padding:10px 18px 0;font-size:12px;font-weight:700;color:var(--m-var);display:flex;justify-content:space-between}
+.rec{display:flex;gap:8px;padding:8px 14px 0}
+.rec div{flex:1;height:52px;border-radius:calc(var(--m-r) - 6px)}
+.nav{position:absolute;left:14px;right:14px;bottom:14px;height:58px;border-radius:30px;display:flex;justify-content:space-around;align-items:center;background:var(--m-glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--m-glassline);font-size:10px;font-weight:600;color:var(--m-on)}
+.nav div{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:48px}
+.nav .on{color:var(--m-pri)}
+.nav .on .ms{font-variation-settings:"FILL" 1}
+.habi{position:absolute;inset:0 0 auto;height:92px;opacity:.5}
+/* textures standing in for macro fabric photos */
+.tx-pina{background:repeating-linear-gradient(0deg,#e9e1cc 0 1px,#f7f1e2 1px 3px),#f7f1e2;background-blend-mode:multiply}
+.tx-pina{background-image:repeating-linear-gradient(0deg,rgba(150,130,90,.25) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(150,130,90,.22) 0 1px,transparent 1px 3px);background-color:#efe6d0}
+.tx-satin{background:linear-gradient(115deg,#5b1a2e 0%,#a3445f 38%,#e7a9b9 48%,#8d2f4a 60%,#4a1424 100%)}
+.tx-inabel{background:repeating-linear-gradient(45deg,#1f2d6b 0 6px,#f3ecdc 6px 9px,#b2332c 9px 11px,#f3ecdc 11px 14px),#1f2d6b}
+.tx-jusi{background-image:repeating-linear-gradient(90deg,rgba(120,100,70,.18) 0 1px,transparent 1px 2px),linear-gradient(160deg,#f5eedc,#e3d6b8)}
+.choice{border:1px dashed var(--line);border-radius:16px;padding:16px 18px;color:var(--muted);font-size:14px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">FabriSCAN+ · Visual direction review · 16 Nov 2026</div>
+    <h1>Three looks for FabriSCAN+</h1>
+    <p>Each direction shows the same Home screen (bento layout, big Scan tile, 4 categories, recent scans, floating nav) in light and dark. All colour pairs below were checked against WCAG; every text pair is 4.5:1 or higher. Fabric photos are stand-in textures for now.</p>
+  </header>
+  <div id="dirs" class="wrap" style="gap:28px"></div>
+  <p class="choice">Pick one direction, or name parts to combine (e.g. "A's palette with C's category colours"). The design system and full prototype will be built on the chosen look.</p>
+</div>
+
+<script>
+const D=[
+ {id:'A',name:'Hibla',sub:'Natural fibers',lede:'Warm piña-cream surfaces, abacá-brown text and an inabel-indigo primary. A soft serif names each fabric, so results feel like a textile reference book. Leaf green marks sustainability cues.',
+  disp:'"Fraunces",Georgia,serif',body:'"Plus Jakarta Sans",system-ui,sans-serif',dw:600,dls:'-0.01em',r:'22px',fabr:'18px',
+  fonts:'Fraunces (fabric names, headlines) · Plus Jakarta Sans (UI)',
+  light:{bg:'#FAF6EE',sc:'#F1EADC',on:'#3B2A1E',var:'#6B5644',pri:'#2E3F8F',onpri:'#FFFFFF',pc:'#DDE1F7',onpc:'#17225A',ter:'#3D6B37',glass:'rgba(255,252,245,.72)'},
+  dark:{bg:'#17130F',sc:'#2A241E',on:'#F1E8DA',var:'#CDBFAE',pri:'#B7C2FF',onpri:'#15205A',pc:'#34418A',onpc:'#DDE1FF',ter:'#9FD39A',glass:'rgba(42,36,30,.72)'},
+  cr:{light:{'on / surface':'12.7','muted / container':'5.8','onPrimary / primary':'9.4','primary / surface':'8.8','leaf / surface':'5.8'},dark:{'on / surface':'15.2','muted / container':'8.5','onPrimary / primary':'8.8','primary / surface':'10.7','leaf / surface':'10.8'}},
+  pros:['Feels local and crafted; fits piña, jusi, inabel','Serif names make results feel trustworthy','Risk: warm palette can feel "old" to younger respondents']},
+ {id:'B',name:'Atelier',sub:'Modern minimal',lede:'Near-white or deep charcoal with one bold terracotta accent. Big grotesk type and lots of space. Fabric photos carry all the colour.',
+  disp:'"Hanken Grotesk",system-ui,sans-serif',body:'"Hanken Grotesk",system-ui,sans-serif',dw:800,dls:'-0.02em',r:'16px',fabr:'28px',
+  fonts:'Hanken Grotesk (everything; ExtraBold for headlines)',
+  light:{bg:'#FBFBFA',sc:'#F0EFED',on:'#1C1B1A',var:'#5E5B57',pri:'#A84A22',onpri:'#FFFFFF',pc:'#FBE3D8',onpc:'#4A1A06',ter:'#2F6B4F',glass:'rgba(255,255,255,.74)'},
+  dark:{bg:'#141414',sc:'#262626',on:'#EDEDED',var:'#B5B2AD',pri:'#FF9E77',onpri:'#3A1404',pc:'#6E2E12',onpc:'#FFDBCC',ter:'#8FD3B0',glass:'rgba(38,38,38,.74)'},
+  cr:{light:{'on / surface':'16.6','muted / container':'5.9','onPrimary / primary':'5.7','primary / surface':'5.5','green / surface':'6.1'},dark:{'on / surface':'15.7','muted / container':'7.2','onPrimary / primary':'8.1','primary / surface':'9.1','green / surface':'10.6'}},
+  pros:['Cleanest, most "app store" look; easiest to build','Highest text contrast','Risk: generic; little Filipino or textile identity']},
+ {id:'C',name:'Habi',sub:'Heritage pattern',lede:'A faint woven motif in headers and a jewel tone for each category: Barong teal, Formal sapphire, Gowns ruby, Filipiniana amber. Lexend throughout for easy reading.',
+  disp:'"Lexend",system-ui,sans-serif',body:'"Lexend",system-ui,sans-serif',dw:600,dls:'-0.01em',r:'20px',fabr:'50%',habi:true,
+  fonts:'Lexend (everything; designed for reading ease)',
+  light:{bg:'#F7F7FB',sc:'#ECEBF4',on:'#1B1A2E',var:'#535170',pri:'#5B1E86',onpri:'#FFFFFF',pc:'#EBDDF7',onpc:'#2A0A45',ter:'#00695C',glass:'rgba(255,255,255,.74)',cats:['#00695C','#1E4BA0','#A3214B','#8A5300'],catOn:'#FFFFFF'},
+  dark:{bg:'#13121C',sc:'#252433',on:'#ECEAF6',var:'#C3C0D6',pri:'#D7B8F5',onpri:'#2E0B4C',pc:'#4A2370',onpc:'#F1E2FF',ter:'#7DD9C8',glass:'rgba(37,36,51,.74)',cats:['#7DD9C8','#AFC6FF','#FFB1C4','#F5C47A'],catOn:'#13121C'},
+  cr:{light:{'on / surface':'15.9','muted / container':'6.4','onPrimary / primary':'10.6','white / category tiles':'6.3–8.2','teal / surface':'6.2'},dark:{'on / surface':'15.6','muted / container':'8.6','onPrimary / primary':'9.5','primary / surface':'10.7','teal / surface':'11.2'}},
+  pros:['Category colours help users find their section fast','Most "Filipino" at a glance','Risk: 4 hues + primary is busier; colour must never be the only cue']},
+];
+const cats=[['Barong','5 fabrics','checkroom'],['Formal wear','5 fabrics','work'],['Gowns','5 fabrics','styler'],['Filipiniana','5 fabrics','auto_awesome']];
+function phone(d,mode){
+  const p=d[mode];
+  const vars=`--m-bg:${p.bg};--m-sc:${p.sc};--m-on:${p.on};--m-var:${p.var};--m-pri:${p.pri};--m-onpri:${p.onpri};--m-pc:${p.pc};--m-onpc:${p.onpc};--m-glass:${p.glass};--m-glassline:${mode==='light'?'rgba(0,0,0,.08)':'rgba(255,255,255,.1)'};--m-disp:${d.disp};--m-body:${d.body};--m-dw:${d.dw};--m-dls:${d.dls};--m-r:${d.r};--m-fabr:${d.fabr}`;
+  const habi=d.habi?`<svg class="habi" viewBox="0 0 300 92" preserveAspectRatio="none" aria-hidden="true"><defs><pattern id="hp${mode}" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0 L16 8 L8 16Z" fill="none" stroke="${p.pri}" stroke-opacity=".18" stroke-width="1.2"/></pattern><linearGradient id="hf${mode}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><mask id="hm${mode}"><rect width="300" height="92" fill="url(#hf${mode})"/></mask></defs><rect width="300" height="92" fill="url(#hp${mode})" mask="url(#hm${mode})"/></svg>`:'';
+  const catTiles=cats.map((c,i)=>{
+    const st=p.cats?`style="background:${p.cats[i]};--m-catOn:${p.catOn}"`:'';
+    return `<div class="t cat" ${st}><span class="ms" aria-hidden="true">${c[2]}</span><div>${c[0]}<br><em>${c[1]}</em></div></div>`}).join('');
+  return `<div><div class="ph" role="img" aria-label="${d.name} Home screen, ${mode} theme"><div class="scr" style="${vars}">${habi}
+   <div class="sb"><span>9:41</span><span class="ms" style="font-size:15px">signal_cellular_alt</span></div>
+   <div class="hd" style="position:relative"><small>Good morning</small><h4>What fabric is this?</h4></div>
+   <div class="bento">
+     <div class="t scan"><div><div class="big">Scan fabric</div><small>Point, snap, get care steps</small></div><div class="fab"><span class="ms" style="font-size:28px">photo_camera</span></div></div>
+     <div class="t" style="grid-column:1/-1;flex-direction:row;align-items:center;gap:10px;min-height:48px"><span class="ms">photo_library</span>Upload a photo</div>
+     ${catTiles}
+   </div>
+   <div class="strip"><span>Recent scans</span><span style="color:var(--m-pri)">See all</span></div>
+   <div class="rec"><div class="tx-pina"></div><div class="tx-satin"></div><div class="tx-inabel"></div></div>
+   <nav class="nav"><div class="on"><span class="ms">home</span>Home</div><div><span class="ms">grid_view</span>Browse</div><div><span class="ms">history</span>History</div><div><span class="ms">person</span>Profile</div></nav>
+  </div></div><div class="phonecap">${mode==='light'?'Light':'Dark'}</div></div>`;
+}
+function swatches(d,mode){
+  const p=d[mode],names=[['bg','surface'],['sc','surfaceContainer'],['on','onSurface'],['var','onSurfaceVariant'],['pri','primary'],['pc','primaryContainer'],['ter','tertiary']];
+  return names.map(([k,n])=>{const dark=['on','pri','ter'].includes(k)?(mode==='light'):(mode==='dark'&&k!=='pc'?false:mode==='dark');
+    const fg=(k==='pc')?p.onpc:(k==='pri')?p.onpri:(['on','var','ter'].includes(k)?p.bg:p.on);
+    return `<div class="chip" style="background:${p[k]};color:${fg}"><b>${n}</b><span>${p[k]}</span></div>`}).join('');
+}
+function cr(o){return Object.entries(o).map(([k,v])=>`${k} <b>${v}:1</b>`).join(' · ')}
+document.getElementById('dirs').innerHTML=D.map(d=>`
+ <section class="dir" aria-labelledby="h${d.id}">
+  <div class="spec">
+   <div><div class="eyebrow">Direction ${d.id} · ${d.sub}</div><h2 id="h${d.id}" style="font-family:${d.disp};font-weight:${d.dw}">${d.name}</h2><p class="lede">${d.lede}</p></div>
+   <div><h3>Light tokens</h3><div class="sw">${swatches(d,'light')}</div><p class="notes" style="padding:6px 0 0">${cr(d.cr.light)}</p></div>
+   <div><h3>Dark tokens</h3><div class="sw">${swatches(d,'dark')}</div><p class="notes" style="padding:6px 0 0">${cr(d.cr.dark)}</p></div>
+   <div><h3>Type scale</h3><div class="typespec">
+     <div style="font-family:${d.disp};font-weight:${d.dw};font-size:32px;line-height:1.1;letter-spacing:${d.dls}">Piña-seda</div>
+     <div style="font-family:${d.disp};font-weight:${d.dw};font-size:22px">High match · Barong, Filipiniana</div>
+     <div style="font-family:${d.body};font-size:16px">Wash by hand in cool water with mild soap. Do not wring.</div>
+     <div style="font-family:${d.body};font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Check the garment label to confirm fiber</div>
+     <div class="notes" style="padding:4px 0 0;list-style:none">${d.fonts}. Display 32 · Headline 22 · Body 16 · Label 12.</div></div></div>
+   <div><h3>Shape scale</h3><div class="shapes">
+     <div style="border-radius:8px">8</div><div style="border-radius:12px">12</div><div style="border-radius:${d.r}">${parseInt(d.r)}</div><div style="border-radius:28px">28</div><div style="border-radius:${d.fabr}">Scan</div></div></div>
+   <ul class="notes">${d.pros.map(x=>`<li>${x}</li>`).join('')}</ul>
+  </div>
+  <div class="phones">${phone(d,'light')}${phone(d,'dark')}</div>
+ </section>`).join('');
+</script>

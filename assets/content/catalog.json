@@ -1,0 +1,2502 @@
+{
+  "contentVersion": "0.1.0-sample",
+  "status": "[PLACEHOLDER] Development sample from the prototype. Not researcher content. Must never ship to TAM.",
+  "categories": [
+    {
+      "id": "barong",
+      "name": "Barong",
+      "order": 1,
+      "description": "Sheer and crisp fabrics for the barong Tagalog.",
+      "coverFabricId": "FAB-PINA"
+    },
+    {
+      "id": "formal",
+      "name": "Formal wear",
+      "order": 2,
+      "description": "Suiting and shirting fabrics for formal events.",
+      "coverFabricId": "FAB-WOOL"
+    },
+    {
+      "id": "gowns",
+      "name": "Gowns",
+      "order": 3,
+      "description": "Fabrics with sheen, drape and volume for gowns.",
+      "coverFabricId": "FAB-SATIN"
+    },
+    {
+      "id": "filipiniana",
+      "name": "Filipiniana",
+      "order": 4,
+      "description": "Heritage and handwoven fabrics for Filipiniana.",
+      "coverFabricId": "FAB-INABEL"
+    }
+  ],
+  "stainTypes": [
+    {
+      "id": "food",
+      "name": "Food & oil"
+    },
+    {
+      "id": "sweat",
+      "name": "Sweat"
+    },
+    {
+      "id": "makeup",
+      "name": "Make-up"
+    },
+    {
+      "id": "ink",
+      "name": "Ink"
+    }
+  ],
+  "fabrics": [
+    {
+      "id": "FAB-PINA",
+      "name": "Piña",
+      "aka": [
+        "Piña cloth"
+      ],
+      "categoryIds": [
+        "barong",
+        "filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Pineapple-leaf fiber",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A fine, sheer cloth handwoven from pineapple-leaf fibers. It is light, slightly stiff, and has a soft natural sheen.",
+      "identifyingFeatures": [
+        "See-through when held up to light",
+        "Crisp, slightly stiff feel",
+        "Fine, slightly uneven threads"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#EFE7D2",
+        "accent": "#8C7650",
+        "pattern": "plain"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-PINASEDA",
+      "name": "Piña-seda",
+      "aka": [
+        "Piña-silk"
+      ],
+      "categoryIds": [
+        "barong"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Pineapple-leaf fiber + silk",
+          "type": "blend",
+          "note": ""
+        }
+      ],
+      "description": "Piña blended with silk. Softer and smoother than pure piña, with more drape and a brighter sheen.",
+      "identifyingFeatures": [
+        "Softer and less stiff than piña",
+        "Brighter, silky sheen",
+        "Even, smooth threads"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F1E6CF",
+        "accent": "#967846",
+        "pattern": "sheen"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-JUSI",
+      "name": "Jusi",
+      "aka": [
+        "Husi"
+      ],
+      "categoryIds": [
+        "barong",
+        "filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Abacá",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        }
+      ],
+      "description": "A sheer, light fabric often embroidered for barong. Older jusi was silk or abacá; most modern jusi is polyester or a blend.",
+      "identifyingFeatures": [
+        "Sheer, but smoother than piña",
+        "Often has woven stripes or embroidery",
+        "Even, machine-regular threads"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F3ECDC",
+        "accent": "#D2BE96",
+        "pattern": "stripe"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-ORGANZA",
+      "name": "Organza",
+      "aka": [],
+      "categoryIds": [
+        "barong"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        }
+      ],
+      "description": "A sheer, crisp plain-weave fabric that holds its shape. Used for barong, sleeves and gown layers.",
+      "identifyingFeatures": [
+        "Sheer and very crisp",
+        "Holds a stiff shape",
+        "Light shimmer"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#E9ECF2",
+        "accent": "#5A6482",
+        "pattern": "sheen"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-COCOON",
+      "name": "Cocoon",
+      "aka": [
+        "Gusot-mayaman"
+      ],
+      "categoryIds": [
+        "barong"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Polyester blend",
+          "type": "blend",
+          "note": ""
+        }
+      ],
+      "description": "A light fabric with a built-in crinkled texture, so it looks fine even when wrinkled. Popular for everyday barong.",
+      "identifyingFeatures": [
+        "Crinkled, wrinkled-look texture",
+        "Opaque or semi-sheer",
+        "Soft and light"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#ECE3CF",
+        "accent": "#785F3C",
+        "pattern": "crinkle"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Turn the garment inside out.",
+            "Hand wash, or machine wash on gentle inside a mesh bag.",
+            "Use cold water and mild detergent. No bleach."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Hang to dry in the shade. Synthetics dry fast.",
+            "Do not tumble dry on high heat; it can melt or shine the fibers.",
+            "Smooth the garment by hand while damp."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron on the reverse side only.",
+            "Use a press cloth so the fabric does not get shiny marks.",
+            "Keep the iron moving. High heat can melt synthetic fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Usually not needed. If you must, low, up to 110 °C"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang on a wide or padded hanger.",
+            "Cover with a breathable cotton garment bag, not plastic.",
+            "Leave space in the closet so it does not crease."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-WOOL",
+      "name": "Wool suiting",
+      "aka": [],
+      "categoryIds": [
+        "formal"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Wool",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Wool blend",
+          "type": "blend",
+          "note": ""
+        }
+      ],
+      "description": "A smooth, firm woven wool used for suits and slacks. It drapes well and resists wrinkles.",
+      "identifyingFeatures": [
+        "Fine diagonal twill lines",
+        "Warm, slightly springy feel",
+        "Matte or low sheen"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#3B3D42",
+        "accent": "#8A8D94",
+        "pattern": "twill"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Dry cleaning is safest for tailored suits.",
+            "To hand wash, use cold water and a wool soap. Do not soak long.",
+            "Never wring or rub; wool shrinks and felts."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Lay flat on a towel, away from heat and sun.",
+            "Reshape while damp.",
+            "Brush lightly with a clothes brush once dry."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Use steam and a damp press cloth.",
+            "Press and lift. Do not slide.",
+            "Let it cool on the hanger before wearing."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 2,
+            "text": "Medium, up to 150 °C, with steam and a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang jackets on wide, shaped hangers.",
+            "Rest a suit for a day between wears.",
+            "Store with cedar blocks in a breathable bag to keep moths away."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-POLYVIS",
+      "name": "Poly-viscose",
+      "aka": [
+        "Tropical suiting"
+      ],
+      "categoryIds": [
+        "formal"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester + viscose rayon",
+          "type": "blend",
+          "note": ""
+        }
+      ],
+      "description": "A light suiting fabric that mixes polyester and viscose rayon. Cooler than wool and common in local tailoring.",
+      "identifyingFeatures": [
+        "Smooth, light suiting",
+        "Slight sheen",
+        "Springs back after crushing"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#1F2A44",
+        "accent": "#5B6A8C",
+        "pattern": "twill"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Turn the garment inside out.",
+            "Hand wash, or machine wash on gentle inside a mesh bag.",
+            "Use cold water and mild detergent. No bleach."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Hang to dry in the shade. Synthetics dry fast.",
+            "Do not tumble dry on high heat; it can melt or shine the fibers.",
+            "Smooth the garment by hand while damp."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron on the reverse side only.",
+            "Use a press cloth so the fabric does not get shiny marks.",
+            "Keep the iron moving. High heat can melt synthetic fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, on the reverse side"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang on a wide or padded hanger.",
+            "Cover with a breathable cotton garment bag, not plastic.",
+            "Leave space in the closet so it does not crease."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-COTTON",
+      "name": "Cotton",
+      "aka": [
+        "Poplin",
+        "broadcloth"
+      ],
+      "categoryIds": [
+        "formal"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Cotton",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A smooth, tightly woven cotton used for dress shirts. Breathable and easy to iron.",
+      "identifyingFeatures": [
+        "Tight, fine weave",
+        "Soft, matte surface",
+        "Creases when crushed"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F4F5F2",
+        "accent": "#9A9C96",
+        "pattern": "plain"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Wash with similar colours, gentle cycle, 30–40 °C.",
+            "For handwoven pieces, hand wash the first few times in case colours run.",
+            "Use mild detergent. Avoid bleach on coloured fabric."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Line dry in the shade.",
+            "Take it down while still slightly damp. It irons more easily.",
+            "Do not over-dry in a machine; it shrinks."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while slightly damp, or use steam.",
+            "Iron dark or patterned fabric on the reverse side.",
+            "Hang right after ironing."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 3,
+            "text": "Hot, up to 200 °C, while slightly damp"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang shirts on shaped hangers.",
+            "Fold linen and handwoven cloth loosely and refold on new lines now and then.",
+            "Store in a dry, airy place."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-LINEN",
+      "name": "Linen",
+      "aka": [],
+      "categoryIds": [
+        "formal"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Flax",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A woven fabric made from flax. It is cool, strong, and wrinkles easily.",
+      "identifyingFeatures": [
+        "Uneven, slubby threads",
+        "Crisp, cool feel",
+        "Wrinkles quickly"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#D9CCB2",
+        "accent": "#5A4628",
+        "pattern": "plain"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Wash with similar colours, gentle cycle, 30–40 °C.",
+            "For handwoven pieces, hand wash the first few times in case colours run.",
+            "Use mild detergent. Avoid bleach on coloured fabric."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Line dry in the shade.",
+            "Take it down while still slightly damp. It irons more easily.",
+            "Do not over-dry in a machine; it shrinks."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while slightly damp, or use steam.",
+            "Iron dark or patterned fabric on the reverse side.",
+            "Hang right after ironing."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 3,
+            "text": "Hot, up to 200 °C, while slightly damp"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang shirts on shaped hangers.",
+            "Fold linen and handwoven cloth loosely and refold on new lines now and then.",
+            "Store in a dry, airy place."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-CREPE",
+      "name": "Crepe",
+      "aka": [],
+      "categoryIds": [
+        "formal"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Wool",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A fabric with a fine pebbly surface that drapes softly. Used for dresses, blouses and suits.",
+      "identifyingFeatures": [
+        "Fine pebbly surface",
+        "Matte, grainy look",
+        "Drapes softly"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#26222A",
+        "accent": "#6B6470",
+        "pattern": "dots"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, on the reverse side"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-SATIN",
+      "name": "Satin",
+      "aka": [],
+      "categoryIds": [
+        "gowns"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A smooth weave with a glossy face and a dull back. Common for gowns and linings.",
+      "identifyingFeatures": [
+        "Glossy front, dull back",
+        "Very smooth and slippery",
+        "Reflects light as it drapes"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#8D2F4A",
+        "accent": "#EFB6C4",
+        "pattern": "sheen"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, on the dull side only"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-CHIFFON",
+      "name": "Chiffon",
+      "aka": [],
+      "categoryIds": [
+        "gowns"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A very light, sheer, floaty fabric used for gown layers and sleeves.",
+      "identifyingFeatures": [
+        "Sheer and very light",
+        "Soft, floaty drape",
+        "Slightly rough to the touch"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F1C9CF",
+        "accent": "#E7AAB4",
+        "pattern": "sheen"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-TULLE",
+      "name": "Tulle",
+      "aka": [],
+      "categoryIds": [
+        "gowns"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Nylon",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        }
+      ],
+      "description": "A light net with tiny six-sided holes. Used for skirts, veils and gown volume.",
+      "identifyingFeatures": [
+        "Open net of tiny holes",
+        "Light; can be stiff or soft",
+        "No woven threads"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F3EEF1",
+        "accent": "#8C6E82",
+        "pattern": "net"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Turn the garment inside out.",
+            "Hand wash, or machine wash on gentle inside a mesh bag.",
+            "Use cold water and mild detergent. No bleach."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Hang to dry in the shade. Synthetics dry fast.",
+            "Do not tumble dry on high heat; it can melt or shine the fibers.",
+            "Smooth the garment by hand while damp."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron on the reverse side only.",
+            "Use a press cloth so the fabric does not get shiny marks.",
+            "Keep the iron moving. High heat can melt synthetic fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 0,
+            "text": "Do not iron. Use steam from a distance"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang on a wide or padded hanger.",
+            "Cover with a breathable cotton garment bag, not plastic.",
+            "Leave space in the closet so it does not crease."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-LACE",
+      "name": "Lace",
+      "aka": [],
+      "categoryIds": [
+        "gowns"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Cotton",
+          "type": "natural",
+          "note": ""
+        },
+        {
+          "fiber": "Nylon",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        }
+      ],
+      "description": "An open fabric with patterns of holes, often floral. Used for overlays and trims.",
+      "identifyingFeatures": [
+        "Open floral or patterned holes",
+        "Raised design areas",
+        "See-through between motifs"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#FBF8F2",
+        "accent": "#786458",
+        "pattern": "lace"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, face down on a towel"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-TAFFETA",
+      "name": "Taffeta",
+      "aka": [],
+      "categoryIds": [
+        "gowns"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A crisp, smooth fabric that rustles when it moves. Often has a two-tone shimmer.",
+      "identifyingFeatures": [
+        "Rustles when moved",
+        "Two-tone shimmer",
+        "Fine crosswise ribs"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#2C5F6B",
+        "accent": "#A46F8A",
+        "pattern": "sheen"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-SINAMAY",
+      "name": "Sinamay",
+      "aka": [],
+      "categoryIds": [
+        "filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Abacá",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "An open, stiff weave made from abacá fiber. Used for Filipiniana pieces, hats and accents.",
+      "identifyingFeatures": [
+        "Open, gauzy weave with gaps",
+        "Stiff and slightly scratchy",
+        "Natural, uneven fibers"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#D8BF8A",
+        "accent": "#6E501E",
+        "pattern": "net"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C, with a press cloth"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-INABEL",
+      "name": "Inabel",
+      "aka": [
+        "Abel Iloko"
+      ],
+      "categoryIds": [
+        "filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Cotton, handwoven",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A handwoven cotton from Ilocos and La Union, known for bold geometric patterns.",
+      "identifyingFeatures": [
+        "Woven-in geometric patterns",
+        "Thick, sturdy cotton",
+        "Slightly uneven handwoven edges"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#F3ECDC",
+        "accent": "#1F2D6B",
+        "pattern": "check"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Wash with similar colours, gentle cycle, 30–40 °C.",
+            "For handwoven pieces, hand wash the first few times in case colours run.",
+            "Use mild detergent. Avoid bleach on coloured fabric."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Line dry in the shade.",
+            "Take it down while still slightly damp. It irons more easily.",
+            "Do not over-dry in a machine; it shrinks."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while slightly damp, or use steam.",
+            "Iron dark or patterned fabric on the reverse side.",
+            "Hang right after ironing."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 2,
+            "text": "Medium, up to 150 °C, on the reverse side"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Hang shirts on shaped hangers.",
+            "Fold linen and handwoven cloth loosely and refold on new lines now and then.",
+            "Store in a dry, airy place."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    },
+    {
+      "id": "FAB-TNALAK",
+      "name": "T'nalak",
+      "aka": [],
+      "categoryIds": [
+        "filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Abacá, handwoven",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "A handwoven abacá cloth of the T'boli people, tie-dyed in red, black and natural.",
+      "identifyingFeatures": [
+        "Red, black and cream patterns",
+        "Stiff, glossy abacá",
+        "Patterns from tie-dyed threads"
+      ],
+      "images": [],
+      "swatch": {
+        "base": "#3A1F17",
+        "accent": "#E7D6B4",
+        "pattern": "stripe"
+      },
+      "care": {
+        "washing": {
+          "steps": [
+            "Hand wash only, in cool water (below 30 °C).",
+            "Add a few drops of mild, pH-neutral soap.",
+            "Swish gently for 2–3 minutes. Do not rub, twist or wring.",
+            "Rinse twice in clean, cool water."
+          ],
+          "citationIds": [
+            "SAMPLE-washing"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "Roll the garment in a clean towel and press to remove water.",
+            "Hang on a padded hanger or lay flat, in the shade.",
+            "Keep out of direct sun. Sunlight yellows natural fibers."
+          ],
+          "citationIds": [
+            "SAMPLE-drying"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "Iron while the fabric is still slightly damp.",
+            "Iron on the reverse side, with a thin cotton press cloth on top.",
+            "Press and lift. Do not slide the iron over embroidery."
+          ],
+          "citationIds": [
+            "SAMPLE-ironing"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Avoid ironing. Press lightly through a cloth if needed"
+          }
+        },
+        "stainRemoval": {
+          "steps": [],
+          "citationIds": [
+            "SAMPLE-stain"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot (do not rub) with a clean, dry cloth.",
+                "For oil, sprinkle cornstarch or baby powder on it. Wait 15 minutes, then brush it off.",
+                "Dab with cool water and one drop of mild soap.",
+                "Rinse with cool water and air dry."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Mix 1 tablespoon of white vinegar in 1 litre of cool water.",
+                "Soak the area for 15 minutes.",
+                "Rinse well in clean, cool water.",
+                "Do not use hot water. Heat sets the stain."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "makeup",
+              "steps": [
+                "Scrape off any extra with a blunt edge.",
+                "Dab with mild dish soap on a cotton swab, from the outside in.",
+                "Rinse with cool water."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            },
+            {
+              "stain": "ink",
+              "steps": [
+                "Test on a hidden seam first.",
+                "Dab with rubbing alcohol on a cotton swab. Blot with a clean cloth.",
+                "Repeat until no more ink lifts, then rinse."
+              ],
+              "citationIds": [
+                "SAMPLE-stain"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "Store only when clean and fully dry.",
+            "Wrap in acid-free tissue or a clean cotton cloth.",
+            "Hang on a padded hanger or roll it. Avoid sharp folds.",
+            "Keep away from damp. Add silica gel packs."
+          ],
+          "citationIds": [
+            "SAMPLE-storage"
+          ]
+        }
+      },
+      "reviewedBy": "",
+      "reviewedOn": ""
+    }
+  ],
+  "citations": [
+    {
+      "id": "SAMPLE-washing",
+      "apa": "[PLACEHOLDER] Sample citation for the washing section. Researchers will add the APA 7 reference."
+    },
+    {
+      "id": "SAMPLE-drying",
+      "apa": "[PLACEHOLDER] Sample citation for the drying section. Researchers will add the APA 7 reference."
+    },
+    {
+      "id": "SAMPLE-ironing",
+      "apa": "[PLACEHOLDER] Sample citation for the ironing section. Researchers will add the APA 7 reference."
+    },
+    {
+      "id": "SAMPLE-stain",
+      "apa": "[PLACEHOLDER] Sample citation for the stain section. Researchers will add the APA 7 reference."
+    },
+    {
+      "id": "SAMPLE-storage",
+      "apa": "[PLACEHOLDER] Sample citation for the storage section. Researchers will add the APA 7 reference."
+    }
+  ]
+}
