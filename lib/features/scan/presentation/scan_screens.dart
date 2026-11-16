@@ -190,6 +190,13 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
       );
       await c.initialize();
       await c.setFlashMode(FlashMode.off);
+      // The app is portrait-only: photos must match what the preview shows.
+      await c.lockCaptureOrientation(DeviceOrientation.portraitUp);
+      debugPrint(
+        'FabriSCAN camera: previewSize=${c.value.previewSize} '
+        'sensor=${back.sensorOrientation} '
+        'aspect=${c.value.aspectRatio.toStringAsFixed(3)}',
+      );
       if (!mounted) {
         await c.dispose();
         return;
@@ -255,16 +262,7 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
         fit: StackFit.expand,
         children: [
           if (c != null && c.value.isInitialized)
-            ClipRect(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: c.value.previewSize!.height,
-                  height: c.value.previewSize!.width,
-                  child: CameraPreview(c),
-                ),
-              ),
-            )
+            _FullScreenPreview(controller: c)
           else if (_error != null)
             Center(
               child: Padding(
@@ -426,6 +424,44 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Fills the screen with the camera preview without stretching it, cropping
+/// the edges instead (like the phone's own camera app). Works whether the
+/// plugin reports the preview size in landscape or in portrait, which
+/// differs between Android phones.
+class _FullScreenPreview extends StatelessWidget {
+  const new({required this.controller});
+  final CameraController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final ps = controller.value.previewSize!;
+    final shortSide = ps.width < ps.height ? ps.width : ps.height;
+    final longSide = ps.width < ps.height ? ps.height : ps.width;
+    final ratio = shortSide / longSide; // portrait width / height
+    return LayoutBuilder(
+      builder: (context, box) {
+        var w = box.maxWidth;
+        var h = w / ratio;
+        if (h < box.maxHeight) {
+          h = box.maxHeight;
+          w = h * ratio;
+        }
+        return ClipRect(
+          child: OverflowBox(
+            maxWidth: w,
+            maxHeight: h,
+            child: SizedBox(
+              width: w,
+              height: h,
+              child: controller.buildPreview(),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -618,46 +654,55 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 24,
             children: [
-              SizedBox.square(
-                dimension: 240,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(28),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      if (photo != null)
-                        Image.memory(photo, fit: BoxFit.cover)
-                      else
-                        const Center(child: HiblaLogo(size: 88)),
-                      AnimatedBuilder(
-                        animation: _line,
-                        builder: (context, _) => Align(
-                          alignment: Alignment(0, _line.value * 2 - 1),
-                          child: Container(
-                            height: 3,
-                            decoration: BoxDecoration(
-                              color: t.colorScheme.inversePrimary,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: t.colorScheme.inversePrimary,
-                                  blurRadius: 12,
-                                ),
-                              ],
+              Center(
+                child: SizedBox.square(
+                  dimension: 240,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(28),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        if (photo != null)
+                          Image.memory(photo, fit: BoxFit.cover)
+                        else
+                          const Center(child: HiblaLogo(size: 88)),
+                        AnimatedBuilder(
+                          animation: _line,
+                          builder: (context, _) => Align(
+                            alignment: Alignment(0, _line.value * 2 - 1),
+                            child: Container(
+                              height: 3,
+                              decoration: BoxDecoration(
+                                color: t.colorScheme.inversePrimary,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: t.colorScheme.inversePrimary,
+                                    blurRadius: 12,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
               if (_failed) ...[
                 Text(l.analyzingError, textAlign: TextAlign.center),
-                FilledButton(onPressed: _run, child: Text(l.tryAgain)),
+                Center(
+                  child: FilledButton(onPressed: _run, child: Text(l.tryAgain)),
+                ),
               ] else ...[
-                Text(l.analyzingTitle, style: t.textTheme.headlineSmall),
+                Text(
+                  l.analyzingTitle,
+                  style: t.textTheme.headlineSmall,
+                  textAlign: TextAlign.center,
+                ),
                 Semantics(
                   liveRegion: true,
                   child: AnimatedSwitcher(
@@ -665,13 +710,16 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
                     child: Text(
                       msgs[_msg],
                       key: ValueKey(_msg),
+                      textAlign: TextAlign.center,
                       style: t.textTheme.bodyLarge?.copyWith(
                         color: t.colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 200, child: LinearProgressIndicator()),
+                const Center(
+                  child: SizedBox(width: 200, child: LinearProgressIndicator()),
+                ),
               ],
             ],
           ),

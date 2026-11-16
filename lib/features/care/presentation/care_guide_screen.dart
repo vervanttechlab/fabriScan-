@@ -1,5 +1,6 @@
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/fabric_swatch.dart';
+import 'package:fabriscan/core/widgets/page_padding.dart';
 import 'package:fabriscan/features/catalog/domain/catalog.dart';
 import 'package:fabriscan/features/catalog/presentation/browse_screens.dart';
 import 'package:fabriscan/features/catalog/presentation/catalog_widgets.dart';
@@ -126,7 +127,7 @@ class _CareGuideScreenState extends State<CareGuideScreen> {
             ],
           ),
           body: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+            padding: pagePadding(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               spacing: 12,

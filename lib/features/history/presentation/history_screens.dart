@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:fabriscan/core/db/app_database.dart';
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/confidence_meter.dart';
+import 'package:fabriscan/core/widgets/page_padding.dart';
 import 'package:fabriscan/features/catalog/domain/catalog.dart';
 import 'package:fabriscan/features/catalog/presentation/catalog_widgets.dart';
 import 'package:fabriscan/features/history/data/history_repository.dart';
@@ -101,7 +102,7 @@ class HistoryScreen extends ConsumerWidget {
         bottom: false,
         child: CatalogBuilder(
           builder: (context, catalog) => ListView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+            padding: pagePadding(context, top: 16),
             children: [
               Row(
                 children: [
@@ -243,7 +244,7 @@ class HistoryDetailScreen extends ConsumerWidget {
             ],
           ),
           body: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+            padding: pagePadding(context),
             children: [
               AspectRatio(
                 aspectRatio: 4 / 3,

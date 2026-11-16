@@ -1,5 +1,6 @@
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/fabric_swatch.dart';
+import 'package:fabriscan/core/widgets/page_padding.dart';
 import 'package:fabriscan/features/catalog/domain/catalog.dart';
 import 'package:fabriscan/features/catalog/presentation/catalog_widgets.dart';
 import 'package:fabriscan/l10n/app_localizations.dart';
@@ -20,7 +21,7 @@ class BrowseScreen extends StatelessWidget {
         bottom: false,
         child: CatalogBuilder(
           builder: (context, catalog) => ListView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+            padding: pagePadding(context, top: 16),
             children: [
               Text(l.browseTitle, style: t.textTheme.headlineMedium),
               const SizedBox(height: 14),
@@ -156,7 +157,7 @@ class CategoryScreen extends StatelessWidget {
                       ),
                     ),
                     SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                      padding: pagePadding(context),
                       sliver: SliverGrid.builder(
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -203,7 +204,7 @@ class FabricDetailScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+            padding: pagePadding(context),
             children: [
               SizedBox(height: 200, child: FabricSwatch(fabric: f, radius: 28)),
               const SizedBox(height: 16),

@@ -1,6 +1,7 @@
 import 'package:fabriscan/app/shell.dart';
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/fabric_swatch.dart';
+import 'package:fabriscan/core/widgets/page_padding.dart';
 import 'package:fabriscan/features/catalog/domain/catalog.dart';
 import 'package:fabriscan/features/catalog/presentation/catalog_widgets.dart';
 import 'package:fabriscan/features/history/presentation/history_screens.dart';
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         bottom: false,
         child: CatalogBuilder(
           builder: (context, catalog) => ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
+            padding: pagePadding(context, top: 12),
             children: [
               Row(
                 children: [

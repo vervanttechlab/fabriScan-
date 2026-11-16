@@ -2,6 +2,7 @@ import 'package:fabriscan/core/config/app_config.dart';
 import 'package:fabriscan/core/db/prefs.dart';
 import 'package:fabriscan/core/widgets/banners.dart';
 import 'package:fabriscan/core/widgets/hibla_logo.dart';
+import 'package:fabriscan/core/widgets/page_padding.dart';
 import 'package:fabriscan/features/catalog/data/catalog_repository.dart';
 import 'package:fabriscan/features/history/data/history_repository.dart';
 import 'package:fabriscan/features/identify/data/identify_providers.dart';
@@ -44,7 +45,7 @@ class ProfileScreen extends ConsumerWidget {
       body: SafeArea(
         bottom: false,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+          padding: pagePadding(context, top: 16),
           children: [
             Text(l.profileTitle, style: t.textTheme.headlineMedium),
             const SizedBox(height: 16),
@@ -283,7 +284,7 @@ class HelpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l.helpTitle)),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+        padding: pagePadding(context),
         children: [
           Text(l.helpGoodScan, style: t.textTheme.titleMedium),
           const SizedBox(height: 8),
@@ -354,7 +355,7 @@ class AboutScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l.aboutTitle)),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+        padding: pagePadding(context),
         children: [
           Row(
             spacing: 14,
