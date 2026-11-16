@@ -53,11 +53,8 @@ jobs:
           python-version: '3.11'
       - name: Dataset checker tests
         run: python -I -m unittest discover -s tools/ml/tests
-      - name: Content check
-        run: |
-          if [ -f tools/content/build_catalog.py ]; then
-            pip install pandas openpyxl
-            python tools/content/build_catalog.py --check
-          else
-            echo "build_catalog.py not created yet (content-engineer, M1) - skipping"
-          fi
+      - run: pip install openpyxl
+      - name: Content checker tests
+        run: python -I -m unittest discover -s tools/content/tests
+      - name: Content template structure
+        run: python -I tools/content/build_catalog.py --structure

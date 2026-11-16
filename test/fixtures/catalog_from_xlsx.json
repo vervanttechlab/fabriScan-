@@ -1,0 +1,260 @@
+{
+  "contentVersion": "2026.12.01+1",
+  "status": "researcher content",
+  "categories": [
+    {
+      "id": "barong",
+      "name": "Barong",
+      "order": 1,
+      "description": "A category description.",
+      "coverFabricId": "FAB-PINA"
+    },
+    {
+      "id": "formal",
+      "name": "Formal wear",
+      "order": 2,
+      "description": "A category description.",
+      "coverFabricId": null
+    },
+    {
+      "id": "gowns_filipiniana",
+      "name": "Gowns & Filipiniana",
+      "order": 3,
+      "description": "A category description.",
+      "coverFabricId": "FAB-PINA"
+    },
+    {
+      "id": "beaded",
+      "name": "Beaded Fabrics",
+      "order": 4,
+      "description": "A category description.",
+      "coverFabricId": null
+    }
+  ],
+  "stainTypes": [
+    {
+      "id": "food",
+      "name": "Food & oil"
+    },
+    {
+      "id": "sweat",
+      "name": "Sweat"
+    }
+  ],
+  "fabrics": [
+    {
+      "id": "FAB-PINA",
+      "name": "Piña",
+      "aka": [
+        "Piña cloth"
+      ],
+      "categoryIds": [
+        "barong",
+        "gowns_filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Pineapple-leaf fiber",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "Test description of FAB-PINA.",
+      "identifyingFeatures": [
+        "Feature one",
+        "Feature two",
+        "Feature three"
+      ],
+      "images": [
+        "assets/content/images/FAB-PINA_main.jpg"
+      ],
+      "care": {
+        "washing": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C"
+          }
+        },
+        "stainRemoval": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot.",
+                "Rinse."
+              ],
+              "citationIds": [
+                "S02"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Blot.",
+                "Rinse."
+              ],
+              "citationIds": [
+                "S02"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        }
+      },
+      "reviewedBy": "AB",
+      "reviewedOn": "2026-12-01"
+    },
+    {
+      "id": "FAB-SATIN",
+      "name": "Satin",
+      "aka": [],
+      "categoryIds": [
+        "gowns_filipiniana"
+      ],
+      "fiberContent": [
+        {
+          "fiber": "Polyester",
+          "type": "synthetic",
+          "note": ""
+        },
+        {
+          "fiber": "Silk",
+          "type": "natural",
+          "note": ""
+        }
+      ],
+      "description": "Test description of FAB-SATIN.",
+      "identifyingFeatures": [
+        "Feature one",
+        "Feature two",
+        "Feature three"
+      ],
+      "images": [],
+      "care": {
+        "washing": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        },
+        "drying": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        },
+        "ironing": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ],
+          "setting": {
+            "dots": 1,
+            "text": "Low, up to 110 °C"
+          }
+        },
+        "stainRemoval": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ],
+          "byStain": [
+            {
+              "stain": "food",
+              "steps": [
+                "Blot.",
+                "Rinse."
+              ],
+              "citationIds": [
+                "S02"
+              ]
+            },
+            {
+              "stain": "sweat",
+              "steps": [
+                "Blot.",
+                "Rinse."
+              ],
+              "citationIds": [
+                "S02"
+              ]
+            }
+          ]
+        },
+        "storage": {
+          "steps": [
+            "First step.",
+            "Second step."
+          ],
+          "citationIds": [
+            "S01"
+          ]
+        }
+      },
+      "reviewedBy": "AB",
+      "reviewedOn": "2026-12-01"
+    }
+  ],
+  "citations": [
+    {
+      "id": "S01",
+      "apa": "Author, A. (2020). Fabric care. Publisher."
+    },
+    {
+      "id": "S02",
+      "apa": "Org. (2021). Stains. Site. https://example.org"
+    }
+  ]
+}
